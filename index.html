@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>応募者一次対応マニュアル汎用版 デザイン案</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Noto+Sans+JP:wght@400;500;700;900&display=swap">
+<style>
+:root{
+  --bg-page:#efefef;--bg-card:#fff;--bg-note:#e2e4e7;--bg-row-alt:#f8f8f8;
+  --ink:#5a6172;--ink-muted:#8a909c;--ink-faint:#a8acb5;--line:#d5d7da;
+  --blue-100:#dce7f1;--blue-300:#9bbbd8;--blue-500:#4a80b0;--blue-700:#35608a;
+  --red-100:#f5e3e2;--red-500:#c0504d;--yellow-100:#fdf3d6;--yellow-500:#f5c242;--yellow-ink:#8a6a10;
+  --green-100:#e1efe6;--green-500:#4f9a6b;
+  --radius-s:6px;--radius-m:10px;--shadow:0 2px 8px rgba(40,50,70,.10);
+  --sans:"Noto Sans JP",sans-serif;--num:Montserrat,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg-page);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.8;letter-spacing:.04em;-webkit-font-smoothing:antialiased;line-break:strict;overflow-wrap:anywhere}
+h1,h2,h3,h4,p,ul,ol{margin:0;padding:0}
+a{color:inherit}
+.num{font-family:var(--num)}
+b,.em{color:var(--blue-500);font-weight:700}
+.neg{color:var(--red-500)}
+button{font-family:inherit;letter-spacing:inherit;cursor:pointer}
+
+/* ===== 上部ナビ ===== */
+.topbar{position:sticky;top:0;z-index:20;background:#fff;box-shadow:0 1px 0 var(--line);display:flex;align-items:center;gap:6px;padding:0 24px;height:56px;overflow-x:auto}
+.brand{font-weight:900;font-size:14px;letter-spacing:.12em;color:var(--blue-700);white-space:nowrap;margin-right:14px;display:flex;align-items:center;gap:8px;text-decoration:none}
+.brand i{display:inline-block;width:22px;height:22px;border-radius:5px;background:linear-gradient(to top right,#5f93c2,#2b5680)}
+.tab{display:flex;align-items:center;gap:6px;white-space:nowrap;text-decoration:none;font-size:13px;font-weight:700;color:var(--ink-muted);padding:7px 12px;border-radius:999px}
+.tab .num{font-size:11px;font-weight:800;color:var(--blue-300)}
+.tab:hover{background:var(--bg-row-alt);color:var(--ink)}
+.tab.on{background:var(--blue-500);color:#fff}
+.tab.on .num{color:var(--blue-100)}
+
+/* ===== ヒーロー ===== */
+.hero{background:linear-gradient(to top right,#5f93c2,#2b5680);color:#fff;padding:40px 48px 36px;position:relative}
+.hero::after{content:"";position:absolute;inset:14px;border:1px solid rgba(255,255,255,.5);pointer-events:none}
+.hero .crumb{font-size:12px;letter-spacing:.1em;opacity:.85}
+.hero .no{font-family:var(--num);font-weight:800;font-size:14px;letter-spacing:.3em;margin-top:14px;opacity:.9}
+.hero h1{font-size:28px;font-weight:900;letter-spacing:.1em;line-height:1.45;margin-top:4px}
+.hero p{margin-top:12px;font-size:15px;max-width:720px;opacity:.95}
+.hero p b{color:#fff;background:rgba(255,255,255,.16);padding:0 4px;border-radius:3px}
+.hero .goal{position:relative;z-index:1;margin-top:16px;display:inline-flex;gap:10px;align-items:center;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.4);border-radius:var(--radius-s);padding:8px 14px;font-size:13.5px}
+.hero .goal .k{font-size:11px;font-weight:800;letter-spacing:.2em;background:var(--yellow-500);color:#4b4020;padding:2px 8px;border-radius:3px}
+.hero .actions{position:relative;z-index:1;display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.hero .actions a{color:#fff;text-decoration:none;font-size:12px;border:1px solid rgba(255,255,255,.6);border-radius:999px;padding:4px 12px}
+.hero .actions a:hover{background:rgba(255,255,255,.15)}
+
+/* ===== レイアウト ===== */
+.wrap{display:grid;grid-template-columns:210px 1fr;gap:32px;max-width:1180px;margin:0 auto;padding:32px 32px 80px}
+.wrap.full{grid-template-columns:1fr}
+nav.toc{position:sticky;top:76px;align-self:start}
+nav.toc .ttl{font-size:11px;font-weight:700;letter-spacing:.2em;color:var(--ink-muted);margin-bottom:8px}
+nav.toc button{display:flex;width:100%;gap:10px;align-items:baseline;background:none;border:0;border-left:3px solid transparent;text-align:left;color:var(--ink);font-size:13px;line-height:1.5;padding:7px 10px;border-radius:var(--radius-s)}
+nav.toc button .num{color:var(--blue-500);font-weight:700;font-size:11.5px;width:18px;flex:none}
+nav.toc button:hover{background:#fff}
+nav.toc button.on{background:#fff;border-left-color:var(--blue-500);font-weight:700}
+main{min-width:0}
+.page{display:none}
+.page.on{display:block}
+
+/* ===== セクション ===== */
+section{margin-bottom:56px;scroll-margin-top:76px}
+.sec-head{display:flex;align-items:center;gap:16px}
+.sec-no{font-family:var(--num);font-weight:800;font-size:42px;line-height:1;color:transparent;-webkit-text-stroke:2px var(--blue-500)}
+.sec-head h2{font-size:20px;font-weight:700;letter-spacing:.14em;line-height:1.4}
+.rule{position:relative;height:3px;background:var(--line);margin:14px 0 18px}
+.rule::before{content:"";position:absolute;left:0;top:0;height:3px;width:180px;background:var(--blue-500)}
+h3.sub{font-size:16px;letter-spacing:.12em;margin:28px 0 12px;display:flex;align-items:center;gap:10px}
+h3.sub::before{content:"";width:4px;height:18px;background:var(--blue-500);border-radius:2px}
+.lead{font-size:15px;margin-bottom:18px}
+.card{background:var(--bg-card);border-radius:var(--radius-m);box-shadow:var(--shadow);padding:20px 22px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.label{font-size:11.5px;font-weight:700;letter-spacing:.18em;color:var(--ink-muted)}
+.note{font-size:13px;color:var(--ink-muted);line-height:1.6}
+.band{border-radius:var(--radius-s);padding:13px 20px;text-align:center;font-size:15px;font-weight:700;line-height:1.55;color:#fff;background:var(--blue-500);margin-top:16px}
+.band.neg{background:var(--red-500)}
+.band.deep{background:var(--blue-700)}
+.dots{list-style:none;font-size:14px;line-height:1.75}
+.dots li{position:relative;padding-left:16px}
+.dots li::before{content:"";position:absolute;left:2px;top:.75em;width:6px;height:6px;border-radius:50%;background:var(--blue-500)}
+.pill{display:inline-block;font-size:12px;font-weight:700;padding:2px 10px;border-radius:999px;white-space:nowrap;line-height:1.6}
+.pill.blue{background:var(--blue-100);color:var(--blue-700)}
+.pill.red{background:var(--red-100);color:var(--red-500)}
+.pill.yel{background:var(--yellow-100);color:var(--yellow-ink)}
+.pill.gray{background:var(--bg-note);color:var(--ink)}
+.pill.green{background:var(--green-100);color:var(--green-500)}
+.ph{background:var(--yellow-100);color:var(--yellow-ink);border:1px dashed #e2c46a;border-radius:4px;padding:0 4px;font-weight:700;white-space:nowrap}
+.ph.filled{background:var(--green-100);color:#2f6d47;border:1px solid #a7cdb4}
+.callout{display:flex;gap:14px;align-items:flex-start;border-radius:var(--radius-m);padding:16px 20px;font-size:14px}
+.callout .ic{font-size:22px;line-height:1.2}
+.callout.red{background:var(--red-100);color:#7d3533}
+.callout.red b{color:var(--red-500)}
+.callout.yel{background:var(--yellow-100);color:#5c4a17}
+.callout.gray{background:var(--bg-note)}
+.callout.blue{background:var(--blue-100);color:var(--blue-700)}
+
+/* クイックリンク */
+.quick{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+.quick button{display:flex;flex-direction:column;gap:2px;background:#fff;border:0;border-top:3px solid var(--blue-500);border-radius:var(--radius-m);box-shadow:var(--shadow);padding:13px 16px;text-align:left;color:var(--ink);transition:transform .15s}
+.quick button:hover{transform:translateY(-2px)}
+.quick .q{font-size:14px;font-weight:700;line-height:1.5}
+.quick .to{font-size:12px;color:var(--blue-500);font-weight:700}
+
+/* 表 */
+.tbl-wrap{overflow-x:auto;border-radius:var(--radius-m);box-shadow:var(--shadow)}
+table{width:100%;border-collapse:collapse;font-size:14px;line-height:1.55;background:#fff}
+th{background:var(--blue-500);color:#fff;font-weight:700;text-align:left;padding:11px 14px;white-space:nowrap}
+td{padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+tbody tr:nth-child(even) td{background:var(--bg-row-alt)}
+td.c,th.c{text-align:center}
+td.ex{color:var(--ink-muted);font-size:13px}
+td.fill{min-width:140px;background-image:linear-gradient(transparent calc(100% - 8px),transparent 0)}
+td.fill::after{content:"";display:block;border-bottom:1.5px dashed var(--line);height:20px}
+tr.grp td{background:var(--blue-100)!important;color:var(--blue-700);font-weight:700;font-size:12px;letter-spacing:.15em;padding:6px 14px}
+
+/* FAQ / details */
+details{background:#fff;border-radius:var(--radius-m);box-shadow:var(--shadow);margin-bottom:10px;overflow:hidden}
+summary{list-style:none;cursor:pointer;padding:14px 48px 14px 20px;font-weight:700;font-size:14.5px;position:relative;display:flex;gap:12px;align-items:center}
+summary::-webkit-details-marker{display:none}
+summary .q{font-family:var(--num);color:var(--blue-500);font-weight:800}
+summary::after{content:"";position:absolute;right:20px;top:50%;width:9px;height:9px;border-right:2px solid var(--blue-500);border-bottom:2px solid var(--blue-500);transform:translateY(-70%) rotate(45deg);transition:transform .2s}
+details[open] summary::after{transform:translateY(-30%) rotate(-135deg)}
+details .a{padding:0 20px 16px 48px;font-size:14px}
+details .a.wide{padding:0 20px 18px}
+.ref{display:inline-block;margin-left:6px;font-size:12px;color:var(--blue-500);font-weight:700;background:none;border:0;padding:0}
+
+/* チェックリスト */
+.check{list-style:none}
+.check li{display:flex;gap:12px;align-items:flex-start;padding:9px 0;border-bottom:1px dashed var(--line);font-size:14px;line-height:1.6}
+.check li:last-child{border-bottom:0}
+.check input{width:18px;height:18px;margin-top:2px;accent-color:var(--blue-500);flex:none}
+.check li.done span{color:var(--ink-faint);text-decoration:line-through}
+.progress{height:8px;background:var(--bg-note);border-radius:999px;overflow:hidden;margin:6px 0 4px}
+.progress i{display:block;height:100%;width:0;background:var(--blue-500);transition:width .25s}
+.cl-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.cl-head .cnt{font-family:var(--num);font-weight:700;font-size:13px;color:var(--blue-500)}
+
+/* セグメント切替 */
+.seg{display:inline-flex;background:#fff;border-radius:999px;box-shadow:var(--shadow);padding:4px;gap:4px}
+.seg button{border:0;background:none;padding:7px 16px;border-radius:999px;font-size:13px;font-weight:700;color:var(--ink-muted)}
+.seg button.on{background:var(--blue-500);color:#fff}
+.seg button.on.org{background:#d9822b}
+
+/* ===================== HOME ===================== */
+.layers{display:grid;grid-template-columns:1fr 64px 1fr;align-items:stretch}
+.layer{background:#fff;border-radius:var(--radius-m);box-shadow:var(--shadow);padding:22px;position:relative}
+.layer .tagtop{position:absolute;top:-11px;left:18px;font-size:11px;font-weight:800;letter-spacing:.18em;padding:2px 10px;border-radius:4px;color:#fff;background:var(--blue-700)}
+.layer.sheet .tagtop{background:var(--yellow-500);color:#4b4020}
+.layer h3{font-size:17px;font-weight:700;margin-top:4px}
+.layer .freq{margin-top:10px;display:flex;align-items:center;gap:8px;font-size:12.5px}
+.meter{display:flex;gap:3px}
+.meter i{width:14px;height:6px;border-radius:2px;background:var(--bg-note)}
+.meter.lo i:nth-child(1){background:var(--blue-500)}
+.meter.hi i{background:var(--yellow-500)}
+.plus{display:flex;align-items:center;justify-content:center;font-family:var(--num);font-weight:800;font-size:28px;color:var(--blue-300)}
+.formula{margin-top:16px;background:#fff;border-radius:var(--radius-m);box-shadow:var(--shadow);padding:14px 20px;font-size:14px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.journey{display:grid;grid-template-columns:1fr 1fr;gap:0;position:relative}
+.jstage{padding:18px 20px;border-radius:var(--radius-m);color:#fff;position:relative}
+.jstage.s1{background:var(--blue-700);border-radius:var(--radius-m) 0 0 var(--radius-m);clip-path:polygon(0 0,calc(100% - 24px) 0,100% 50%,calc(100% - 24px) 100%,0 100%)}
+.jstage.s2{background:var(--blue-500);border-radius:0 var(--radius-m) var(--radius-m) 0;margin-left:-14px;padding-left:40px;clip-path:polygon(0 0,100% 0,100% 100%,0 100%,24px 50%)}
+.jstage .k{font-size:11px;font-weight:800;letter-spacing:.2em;opacity:.8}
+.jstage .t{font-size:17px;font-weight:700}
+.jstage .s{font-size:12.5px;opacity:.9}
+.support{margin-top:12px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.support div{background:#fff;border:1.5px dashed var(--blue-300);border-radius:var(--radius-m);padding:10px 16px;font-size:13px;display:flex;gap:10px;align-items:center}
+.support .num{font-weight:800;color:var(--blue-500);font-size:15px}
+.docs{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.doc{display:flex;flex-direction:column;background:#fff;border-radius:var(--radius-m);box-shadow:var(--shadow);overflow:hidden;text-decoration:none;color:var(--ink);transition:transform .15s, box-shadow .15s;border:0;text-align:left;padding:0}
+.doc:hover{transform:translateY(-3px);box-shadow:0 6px 18px rgba(40,50,70,.14)}
+.doc .dh{display:flex;align-items:center;gap:14px;padding:18px 20px 12px}
+.doc .dn{font-family:var(--num);font-weight:800;font-size:34px;line-height:1;color:transparent;-webkit-text-stroke:1.6px var(--blue-500)}
+.doc .dt{font-size:16.5px;font-weight:700;line-height:1.4}
+.doc .dt small{display:block;font-size:11.5px;font-weight:700;color:var(--ink-muted);letter-spacing:.1em}
+.doc .dd{padding:0 20px;font-size:13.5px;flex:1}
+.doc .when{margin:12px 20px 0;display:flex;flex-wrap:wrap;gap:6px}
+.doc .go{margin-top:14px;padding:10px 20px;border-top:1px solid var(--line);font-size:12.5px;font-weight:700;color:var(--blue-500);display:flex;justify-content:space-between}
+.labels{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
+.labels>div{background:#fff;border-radius:var(--radius-m);box-shadow:var(--shadow);padding:12px 16px;font-size:13px}
+.labels .lt{font-weight:700;font-size:14px;margin-bottom:2px}
+
+/* ===================== 01 ===================== */
+.stepper{position:relative}
+.step{display:grid;grid-template-columns:56px 1fr;gap:16px;position:relative;padding-bottom:14px}
+.step::before{content:"";position:absolute;left:27px;top:52px;bottom:0;width:2px;background:var(--blue-300)}
+.step:last-child::before{display:none}
+.step .sn{width:56px;height:56px;border-radius:50%;background:var(--blue-500);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--num);font-weight:800;font-size:20px;position:relative;z-index:1;box-shadow:0 0 0 5px var(--bg-page)}
+.step.gate .sn{background:var(--red-500)}
+.step.live .sn{background:var(--blue-700)}
+.step .sc{background:#fff;border-radius:var(--radius-m);box-shadow:var(--shadow);padding:14px 18px;display:grid;grid-template-columns:1fr 240px;gap:16px}
+.step .st{font-size:16px;font-weight:700;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.step .who{font-size:12px;color:var(--ink-muted);margin-top:2px}
+.step .do{font-size:13.5px;margin-top:6px}
+.step .done{background:var(--blue-100);border-radius:var(--radius-s);padding:10px 12px;font-size:12.5px;line-height:1.6;color:var(--blue-700);align-self:start}
+.step .done .label{color:var(--blue-500);font-size:10.5px;margin-bottom:2px}
+.br{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:800;padding:2px 8px;border-radius:999px;background:#fbe8d4;color:#b4661a;letter-spacing:.05em}
+.step .var{margin-top:8px;border-left:3px solid #d9822b;background:#fdf4ea;padding:7px 12px;border-radius:0 6px 6px 0;font-size:13px;color:#7a4a17}
+.mode-ats .step .var{border-left-color:var(--blue-500);background:var(--blue-100);color:var(--blue-700)}
+.mode-bar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:18px}
+.gate-note{font-size:12px;font-weight:700;color:var(--red-500);margin-top:6px}
+.hear{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.hear div{background:#fff;border-radius:var(--radius-m);box-shadow:var(--shadow);padding:14px 16px;display:flex;gap:12px}
+.hear .hk{font-family:var(--num);font-weight:800;font-size:22px;color:var(--blue-500);line-height:1.1;width:22px;flex:none}
+.hear .ht{font-weight:700;font-size:14px}
+.hear .hd{font-size:12.5px;line-height:1.6;margin-top:2px}
+.hear div.first{grid-column:1/-1;background:var(--blue-700);color:#fff}
+.hear div.first .hk,.hear div.first b{color:var(--yellow-500)}
+.sheet-head{display:flex;justify-content:space-between;align-items:center;gap:10px;width:100%}
+
+/* ===================== 02 ===================== */
+.rules{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.rule-c{background:#fff;border-radius:var(--radius-m);box-shadow:var(--shadow);padding:14px 16px;display:flex;flex-direction:column;gap:6px}
+.rule-c .r{font-weight:700;font-size:14px;line-height:1.55;display:flex;gap:8px}
+.rule-c .r .num{color:var(--blue-500);font-weight:800}
+.rule-c .why{font-size:12.5px;color:var(--ink-muted);line-height:1.6;border-top:1px dashed var(--line);padding-top:6px}
+.ng{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.ng span{background:#fff;color:var(--red-500);font-weight:700;font-size:13px;padding:4px 12px;border-radius:999px;border:1px solid #e7b3b1;text-decoration:line-through;text-decoration-thickness:1.5px}
+.scene-wrap{display:grid;grid-template-columns:240px 1fr;gap:18px;align-items:start}
+.scene-list{display:flex;flex-direction:column;gap:6px;position:sticky;top:76px}
+.scene-list button{display:flex;gap:10px;align-items:center;background:#fff;border:0;border-radius:var(--radius-s);padding:9px 12px;text-align:left;font-size:13px;font-weight:700;color:var(--ink);box-shadow:var(--shadow);line-height:1.4}
+.scene-list button .num{width:24px;height:24px;border-radius:50%;background:var(--blue-100);color:var(--blue-700);display:inline-flex;align-items:center;justify-content:center;font-size:11.5px;flex:none}
+.scene-list button.on{background:var(--blue-500);color:#fff}
+.scene-list button.on .num{background:#fff;color:var(--blue-500)}
+.scene-list .grp{font-size:10.5px;font-weight:800;letter-spacing:.2em;color:var(--ink-muted);margin:8px 0 0 4px}
+.scene{background:#fff;border-radius:var(--radius-m);box-shadow:var(--shadow);overflow:hidden}
+.scene .sh{background:var(--blue-500);color:#fff;padding:16px 22px;display:flex;align-items:center;gap:14px}
+.scene .sh .n{font-family:var(--num);font-weight:800;font-size:30px;line-height:1}
+.scene .sh h3{font-size:18px;font-weight:700;letter-spacing:.06em}
+.scene .meta{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid var(--line)}
+.scene .meta div{padding:12px 18px;font-size:13px;line-height:1.6;border-right:1px solid var(--line)}
+.scene .meta div:last-child{border-right:0}
+.scene .meta .label{font-size:10.5px;margin-bottom:2px}
+.scene .meta .goal{background:var(--blue-100);color:var(--blue-700);font-weight:700}
+.scene .body{padding:20px 22px;display:flex;flex-direction:column;gap:14px}
+.talk-ttl{font-size:12.5px;font-weight:700;color:var(--ink-muted);display:flex;align-items:center;gap:8px}
+.talk-ttl::after{content:"";flex:1;height:1px;background:var(--line)}
+.bubble{position:relative;background:var(--blue-100);color:#2f4560;border-radius:4px 14px 14px 14px;padding:12px 16px 12px 16px;font-size:14.5px;line-height:1.9;margin-left:44px}
+.bubble::before{content:"🎧";position:absolute;left:-44px;top:0;width:34px;height:34px;border-radius:50%;background:#fff;box-shadow:var(--shadow);display:flex;align-items:center;justify-content:center;font-size:16px}
+.bubble p+p{margin-top:6px}
+.memo{background:var(--bg-note);border-radius:var(--radius-s);padding:10px 14px;font-size:13px;line-height:1.65}
+.memo.red{background:var(--red-100);color:#7d3533}
+.memo.org{background:#fdf0e1;color:#7a4a17}
+.next{display:flex;gap:10px;align-items:center;font-size:13px;font-weight:700;color:var(--blue-700);background:#fff;border:1.5px solid var(--blue-300);border-radius:var(--radius-s);padding:9px 14px}
+.next::before{content:"NEXT";font-family:var(--num);font-size:10.5px;font-weight:800;letter-spacing:.15em;background:var(--blue-500);color:#fff;padding:1px 7px;border-radius:3px}
+.why-box summary{padding:10px 40px 10px 14px;font-size:13px}
+.why-box{box-shadow:none;border:1px solid var(--line);margin:0}
+.why-box .a{padding:0 14px 12px;font-size:13px}
+.fillbar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.confirm-steps{display:flex;gap:0;counter-reset:c}
+.confirm-steps div{flex:1;background:#fff;box-shadow:var(--shadow);padding:14px 14px 14px 16px;font-size:13px;line-height:1.55;position:relative;border-right:1px solid var(--line)}
+.confirm-steps div:first-child{border-radius:var(--radius-m) 0 0 var(--radius-m)}
+.confirm-steps div:last-child{border-radius:0 var(--radius-m) var(--radius-m) 0;border-right:0}
+.confirm-steps div::before{counter-increment:c;content:counter(c);display:flex;width:24px;height:24px;border-radius:50%;background:var(--blue-500);color:#fff;font-family:var(--num);font-weight:800;font-size:12px;align-items:center;justify-content:center;margin-bottom:6px}
+
+/* ===================== 03 ===================== */
+.diagram svg{width:100%;height:auto;display:block}
+.role{display:flex;flex-direction:column;overflow:hidden;padding:0}
+.role .rh{padding:14px 18px;display:flex;align-items:center;gap:12px;background:var(--blue-500);color:#fff}
+.role.r1 .rh{background:var(--blue-700)}
+.role.r3 .rh{background:var(--blue-100);color:var(--blue-700)}
+.role .ic{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;flex:none}
+.role.r3 .ic{background:#fff}
+.role .ic svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.role .rn{font-size:16.5px;font-weight:700;letter-spacing:.08em;line-height:1.3}
+.role .rn small{display:block;font-size:11px;font-weight:500;opacity:.85}
+.role .rb{padding:14px 18px;flex:1;display:flex;flex-direction:column;gap:12px}
+.role .wholine{display:flex;align-items:center;gap:8px;font-size:12.5px}
+.role .wholine span{flex:1;border-bottom:1.5px dashed var(--line);height:18px}
+.judge{margin-top:auto;background:var(--yellow-100);border-left:4px solid var(--yellow-500);border-radius:4px;padding:9px 12px;font-size:13px;line-height:1.6;color:#4b4020}
+.judge .label{color:#9a7a20;font-size:10.5px}
+.mk{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;font-size:16px;font-weight:700;font-style:normal;letter-spacing:0;line-height:1}
+.mk.own{background:var(--blue-500);color:#fff}
+.mk.do{border:2px solid var(--blue-500);color:var(--blue-500)}
+.mk.inf{background:var(--bg-note);color:var(--ink-muted)}
+.mk.no{color:var(--line)}
+.legend{display:flex;flex-wrap:wrap;gap:18px;font-size:13px;margin-bottom:12px;align-items:center}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend .mk{width:22px;height:22px;font-size:12px}
+.chev{display:flex;filter:drop-shadow(0 1px 2px rgba(40,50,70,.14))}
+.chev>div{flex:1;min-height:60px;margin-left:-14px;padding:6px 28px 6px 34px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;font-weight:700;font-size:14.5px;line-height:1.35;clip-path:polygon(0 0,calc(100% - 20px) 0,100% 50%,calc(100% - 20px) 100%,0 100%,20px 50%)}
+.chev>div:first-child{margin-left:0;padding-left:18px;clip-path:polygon(0 0,calc(100% - 20px) 0,100% 50%,calc(100% - 20px) 100%,0 100%)}
+.chev small{font-size:11.5px;font-weight:500}
+.chev .t1{background:var(--blue-100);color:var(--blue-700)}
+.chev .t2{background:var(--blue-300);color:var(--blue-700)}
+.chev .t3{background:var(--blue-500);color:#fff}
+.chev .t4{background:var(--blue-700);color:#fff}
+.chev .ty{background:var(--yellow-500);color:#4b4020}
+.chev .tw{background:#fff;color:var(--ink)}
+.shift-body{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px}
+.shift-body .card{padding:14px 16px;font-size:13.5px}
+.shift-body .who{margin-top:10px;font-size:12px;color:var(--ink-muted);border-top:1px dashed var(--line);padding-top:8px}
+.handoff{display:flex;gap:16px;align-items:flex-start;margin-top:16px;background:var(--bg-note);border-radius:var(--radius-m);padding:16px 20px}
+.tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.tag{font-size:12px;font-weight:700;padding:3px 10px;border-radius:999px;background:#fff;color:var(--blue-700);border:1px solid var(--blue-300)}
+.ladder{display:flex;flex-direction:column;gap:12px}
+.lv{display:grid;grid-template-columns:84px 1fr 220px;background:#fff;border-radius:var(--radius-m);box-shadow:var(--shadow);overflow:hidden}
+.lv .lvn{display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;font-family:var(--num);font-weight:800;line-height:1}
+.lv .lvn small{font-size:10px;letter-spacing:.2em;font-weight:600;margin-bottom:4px}
+.lv .lvn span{font-size:32px}
+.lv.l1 .lvn{background:var(--blue-300)}
+.lv.l2 .lvn{background:var(--blue-500)}
+.lv.l3 .lvn{background:var(--red-500)}
+.lv .lvc{padding:14px 18px;font-size:14px}
+.lv .lvc .label{font-size:10.5px;margin-bottom:2px}
+.lv .lvr{padding:14px 18px;border-left:1px solid var(--line);font-size:13.5px;display:flex;flex-direction:column;justify-content:center;gap:4px}
+.lv .route{font-weight:700}
+.stop{display:flex;gap:18px;align-items:center;background:var(--red-500);color:#fff;border-radius:var(--radius-m);padding:16px 22px;margin-top:16px}
+.stop .big{font-size:19px;font-weight:900;letter-spacing:.12em;white-space:nowrap;line-height:1.5}
+.stop p{font-size:13.5px;line-height:1.6}
+.yn{display:inline-block;font-size:12px;font-weight:700;padding:2px 10px;border-radius:4px;white-space:nowrap}
+.yn.ok{background:var(--blue-100);color:var(--blue-700)}
+.yn.ng{background:var(--red-100);color:var(--red-500)}
+.yn.mid{background:var(--yellow-100);color:var(--yellow-ink)}
+.kpis{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.kpi{background:#fff;border-radius:var(--radius-m);box-shadow:var(--shadow);padding:14px 16px;border-left:4px solid var(--blue-500)}
+.kpi .k{font-weight:700;font-size:15px;color:var(--blue-500)}
+.kpi .d{font-size:12.5px;line-height:1.6;margin-top:2px}
+
+/* ===================== 04 ===================== */
+.flow{background:#fff;border-radius:var(--radius-m);box-shadow:var(--shadow);padding:22px}
+.flow-row{display:flex;align-items:stretch;gap:0}
+.fnode{flex:1;min-width:0;border:0;background:var(--blue-100);color:var(--blue-700);border-radius:var(--radius-s);padding:10px 8px;text-align:center;font-size:13px;font-weight:700;line-height:1.4;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;transition:all .15s;position:relative}
+.fnode .num{font-size:11px;font-weight:800;opacity:.75}
+.fnode:hover{background:var(--blue-300)}
+.fnode.on{background:var(--blue-500);color:#fff;box-shadow:0 0 0 3px rgba(74,128,176,.25)}
+.farrow{width:22px;flex:none;display:flex;align-items:center;justify-content:center;color:var(--blue-300);font-weight:800}
+.fsplit{flex:1.1;display:flex;flex-direction:column;gap:6px}
+.fsplit .fnode{flex:1}
+.fsplit .fnode.a{background:#e7f0f8}
+.frange{display:flex;margin-top:12px;font-size:11.5px;font-weight:700;letter-spacing:.1em}
+.frange .va{flex:1;background:var(--blue-700);color:#fff;padding:5px 12px;border-radius:4px 0 0 4px}
+.frange .cl{width:150px;background:var(--bg-note);color:var(--ink);padding:5px 12px;border-radius:0 4px 4px 0;text-align:center}
+.frec{margin-top:8px}
+.frec .fnode{width:100%;flex-direction:row;gap:10px;background:#fff;border:1.5px dashed var(--blue-300)}
+.frec .fnode.on{background:var(--blue-500);border-color:var(--blue-500)}
+.detail{margin-top:16px;background:#fff;border-radius:var(--radius-m);box-shadow:var(--shadow);overflow:hidden}
+.detail .dh{display:flex;align-items:center;gap:14px;padding:16px 22px;border-bottom:1px solid var(--line)}
+.detail .dh .num{font-weight:800;font-size:26px;color:var(--blue-500);line-height:1}
+.detail .dh h3{font-size:18px;font-weight:700}
+.detail .dh .navs{margin-left:auto;display:flex;gap:6px}
+.detail .dh .navs button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:4px 12px;font-size:12px;font-weight:700;color:var(--ink)}
+.five{display:grid;grid-template-columns:repeat(5,1fr)}
+.five div{padding:14px 16px;font-size:13px;line-height:1.65;border-right:1px solid var(--line)}
+.five div:last-child{border-right:0}
+.five .label{display:flex;align-items:center;gap:6px;font-size:10.5px;margin-bottom:6px}
+.five .label i{font-style:normal;width:18px;height:18px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:10px;color:#fff;background:var(--blue-300);letter-spacing:0}
+.five .f2 .label i{background:var(--blue-500)}
+.five .f3 .label i{background:var(--blue-700)}
+.five .f4 .label i{background:var(--green-500)}
+.five .f5{background:#fdf6f5}
+.five .f5 .label i{background:var(--red-500)}
+.five .f4{background:#f4f9f6}
+.tries{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:4px}
+.try{background:#fff;box-shadow:var(--shadow);padding:14px 16px;position:relative;font-size:13px;border-right:1px solid var(--line)}
+.try:first-child{border-radius:var(--radius-m) 0 0 var(--radius-m)}
+.try:last-child{border-radius:0 var(--radius-m) var(--radius-m) 0;border-right:0;background:var(--blue-700);color:#fff}
+.try .tn{font-family:var(--num);font-weight:800;font-size:22px;color:var(--blue-500);line-height:1}
+.try:last-child .tn{color:var(--yellow-500)}
+.try .tt{font-weight:700;margin-top:4px}
+.try .ts{font-size:12px;opacity:.8;line-height:1.55;margin-top:2px}
+.status{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.stt{background:#fff;border-radius:var(--radius-m);box-shadow:var(--shadow);overflow:hidden}
+.stt .sh{padding:10px 14px;font-weight:700;font-size:14px;color:#fff;line-height:1.4}
+.stt .sd{padding:10px 14px;font-size:12.5px;line-height:1.6}
+.stt.s1 .sh{background:var(--ink-faint)}
+.stt.s2 .sh{background:var(--blue-300);color:var(--blue-700)}
+.stt.s3 .sh{background:var(--blue-500)}
+.stt.s4 .sh{background:#d9822b}
+.stt.s5 .sh{background:var(--red-500)}
+.search{display:flex;gap:10px;align-items:center;margin-bottom:12px;flex-wrap:wrap}
+.search input{flex:1;min-width:200px;border:1px solid var(--line);border-radius:999px;padding:9px 16px;font-family:inherit;font-size:14px;background:#fff;color:var(--ink)}
+.search input:focus{outline:2px solid var(--blue-300);border-color:var(--blue-300)}
+.daily{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.daily .card{padding:0;overflow:hidden}
+.daily .dh{padding:12px 18px;color:#fff;font-weight:700;display:flex;justify-content:space-between;align-items:center}
+.daily .db{padding:6px 18px 12px}
+.daily .c1 .dh{background:var(--blue-300);color:var(--blue-700)}
+.daily .c2 .dh{background:var(--blue-500)}
+.daily .c3 .dh{background:var(--blue-700)}
+
+footer{font-size:11px;color:var(--ink-faint);text-align:center;padding:24px}
+
+@media (max-width:960px){
+  .wrap{grid-template-columns:1fr;padding:20px 16px 60px}
+  nav.toc{display:none}
+  .grid2,.grid3,.shift-body,.docs,.daily,.support{grid-template-columns:1fr}
+  .layers{grid-template-columns:1fr}.plus{height:40px}
+  .lv{grid-template-columns:64px 1fr}.lv .lvr{grid-column:2;border-left:0;border-top:1px solid var(--line)}
+  .hero{padding:30px 26px}
+  .step .sc{grid-template-columns:1fr}
+  .scene-wrap{grid-template-columns:1fr}.scene-list{position:static;flex-direction:row;flex-wrap:wrap}.scene-list .grp{display:none}
+  .scene .meta{grid-template-columns:1fr}.scene .meta div{border-right:0;border-bottom:1px solid var(--line)}
+  .five{grid-template-columns:1fr}.five div{border-right:0;border-bottom:1px solid var(--line)}
+  .flow-row{flex-direction:column}.farrow{width:auto;height:18px;transform:rotate(90deg)}
+  .tries,.status{grid-template-columns:1fr 1fr}
+  .confirm-steps{flex-direction:column}
+  .journey{grid-template-columns:1fr}.jstage.s2{margin:0;clip-path:none;padding-left:20px}.jstage.s1{clip-path:none}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a class="brand" href="#home"><i></i>応募者一次対応マニュアル</a>
+  <a class="tab" href="#home" data-r="home">トップ</a>
+  <a class="tab" href="#m01" data-r="m01"><span class="num">01</span>受注対応</a>
+  <a class="tab" href="#m02" data-r="m02"><span class="num">02</span>トークスクリプト</a>
+  <a class="tab" href="#m03" data-r="m03"><span class="num">03</span>座組</a>
+  <a class="tab" href="#m04" data-r="m04"><span class="num">04</span>運用フロー</a>
+</div>
+
+<!-- =========================================================== HOME -->
+<div class="page" id="p-home">
+<header class="hero">
+  <div class="crumb">全社ホーム ／ 資料（全社マスター）</div>
+  <div class="no">MANUAL ／ 汎用版</div>
+  <h1>応募者一次対応マニュアル</h1>
+  <p>応募者の一次対応を、<b>どの顧客案件でも同じ品質で</b>立ち上げ・運用するための共通マニュアルです。上司からのタスク4点ごとに資料を分けています。4点がそろったら、1冊の完成版にまとめます。</p>
+  <div class="actions"><a>作成：VISION ARCH</a><a>ドラフト（2026/11/13 作成）</a></div>
+</header>
+<div class="wrap full">
+<main>
+  <section>
+    <div class="sec-head"><h2>このマニュアルは「2層構造」</h2></div>
+    <div class="rule"></div>
+    <div class="layers">
+      <div class="layer">
+        <span class="tagtop">共通</span>
+        <h3>マニュアル本体（01〜04）</h3>
+        <p style="font-size:14px;margin-top:6px">どの案件でも共通の<b>手順・トーク・体制</b></p>
+        <div class="freq"><span class="meter lo"><i></i><i></i><i></i><i></i></span>ほぼ変わらない</div>
+      </div>
+      <div class="plus">＋</div>
+      <div class="layer sheet">
+        <span class="tagtop">案件ごと</span>
+        <h3>案件シート（1案件に1枚）</h3>
+        <p style="font-size:14px;margin-top:6px">顧客ごとの<b>条件・テンプレート名・連絡先・ツール</b>など</p>
+        <div class="freq"><span class="meter hi"><i></i><i></i><i></i><i></i></span>案件ごとに作成・更新</div>
+      </div>
+    </div>
+    <div class="formula">
+      <span>本体に出てくる</span><span class="ph">［案件シート：○○］</span><span>は、各案件の案件シートの値に置き換えて読みます。</span>
+      <button class="ref" data-go="m01" data-sec="s4">案件シートのひな形 → 01の4章</button>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><h2>全体の流れと、4つの資料の関係</h2></div>
+    <div class="rule"></div>
+    <div class="journey">
+      <div class="jstage s1"><div class="k">STEP 1 ／ 01</div><div class="t">受注〜運用開始</div><div class="s">何を聞き、何を決め、いつ始めるか</div></div>
+      <div class="jstage s2"><div class="k">STEP 2 ／ 04</div><div class="t">毎日の運用</div><div class="s">応募が来てから引き継ぐまで</div></div>
+    </div>
+    <div class="support">
+      <div><span class="num">02</span>トークスクリプト｜電話で<b>何を話すか</b>（運用中に場面ごとに開く）</div>
+      <div><span class="num">03</span>座組｜<b>誰が担当し、誰に相談するか</b>（立ち上げ時に決め、運用中に参照）</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><h2>4つの資料</h2></div>
+    <div class="rule"></div>
+    <div class="docs">
+      <a class="doc" href="#m01"><div class="dh"><span class="dn">01</span><div class="dt"><small>🤝 立ち上げ</small>受注対応の確立</div></div><p class="dd">新しい案件を受けたら、何を聞き、何を決め、いつ運用を始めるか。案件シートのひな形もここにあります。</p><div class="when"><span class="pill blue">新規案件を受けた</span><span class="pill blue">キックオフ前</span><span class="pill blue">案件シートを作る</span></div><div class="go"><span>開く</span><span>→</span></div></a>
+      <a class="doc" href="#m02"><div class="dh"><span class="dn">02</span><div class="dt"><small>🗣️ 電話</small>トークスクリプト（共通版）</div></div><p class="dd">応募者に何をどう話すか。場面ごとに開いて使います。</p><div class="when"><span class="pill blue">架電の前</span><span class="pill blue">電話中に迷った</span><span class="pill blue">辞退・苦情を受けた</span></div><div class="go"><span>開く</span><span>→</span></div></a>
+      <a class="doc" href="#m03"><div class="dh"><span class="dn">03</span><div class="dt"><small>👥 体制</small>応募者一次対応の座組</div></div><p class="dd">誰が何を担当し、誰に相談・報告するか。担当者名は未記入です。</p><div class="when"><span class="pill blue">判断してよいか迷った</span><span class="pill blue">トラブル発生</span><span class="pill blue">顧客への報告</span></div><div class="go"><span>開く</span><span>→</span></div></a>
+      <a class="doc" href="#m04"><div class="dh"><span class="dn">04</span><div class="dt"><small>🛠️ 毎日の手順</small>運用フロー（標準手順）</div></div><p class="dd">応募が来てから引き継ぐまで、毎日どう回すか。例外時の初動もここです。</p><div class="when"><span class="pill blue">毎日の業務</span><span class="pill blue">ステータスに迷った</span><span class="pill blue">例外が起きた</span></div><div class="go"><span>開く</span><span>→</span></div></a>
+    </div>
+    <div class="callout gray" style="margin-top:16px"><span class="ic">📚</span><div><b style="color:var(--ink)">記入例：OGR｜応募者一次対応実務マニュアル（第3版）</b><br>この汎用版を案件に当てはめた完成例です。案件シートを書くときの参考にしてください。</div></div>
+  </section>
+
+  <section>
+    <div class="sec-head"><h2>ラベルの見方</h2></div>
+    <div class="rule"></div>
+    <div class="labels">
+      <div><div class="lt">✅ 確定</div>社内で決まった共通ルール</div>
+      <div><div class="lt">⚠️ 要確認</div>上司・社内で決める必要がある事項</div>
+      <div><div class="lt">🧩 要相談</div>顧客ごとに個別カスタマイズ。顧客と相談して決める（案件シートの4-2以降）</div>
+      <div><div class="lt">📝 参考・ドラフト</div>参考文面や読み上げ案</div>
+      <div><div class="lt"><span class="ph">［案件シート：○○］</span></div>案件ごとに案件シートの値で置き換える箇所</div>
+    </div>
+  </section>
+</main>
+</div>
+</div>
+
+<!-- =========================================================== 01 -->
+<div class="page" id="p-m01">
+<header class="hero">
+  <div class="crumb">応募者一次対応マニュアル汎用版</div>
+  <div class="no">MANUAL 01</div>
+  <h1>受注対応の確立<br>（新規案件の受注〜運用開始）</h1>
+  <p>応募者一次対応の新しい案件を受けたときに、何を聞き、何を決め、どの状態になったら運用を始めるかを確認します。</p>
+  <div class="goal"><span class="k">GOAL</span>案件シートの4-1が埋まり、4-2以降について顧客と合意・承認が取れている状態</div>
+</header>
+<div class="wrap">
+<nav class="toc"></nav>
+<main>
+  <section data-t="こんなときは" data-n="—">
+    <div class="sec-head"><h2>こんなときは、ここを開く</h2></div><div class="rule"></div>
+    <div class="quick">
+      <button data-sec="s1"><span class="q">受注から運用開始までの全体の流れを知りたい</span><span class="to">→ 01 流れ</span></button>
+      <button data-sec="s1"><span class="q">ATS案件と個別カスタマイズ案件の違いを知りたい</span><span class="to">→ 01 区分切替</span></button>
+      <button data-sec="s3"><span class="q">キックオフで何を聞くか確認したい</span><span class="to">→ 03 ヒアリング項目</span></button>
+      <button data-sec="s4"><span class="q">案件シートを作りたい</span><span class="to">→ 04 案件シート</span></button>
+      <button data-sec="s5"><span class="q">本運用に入ってよいか確認したい</span><span class="to">→ 05 チェックリスト</span></button>
+    </div>
+  </section>
+
+  <section id="m01-s1" data-t="受注から運用開始までの流れ" data-n="01">
+    <div class="sec-head"><span class="sec-no">01</span><h2>受注から運用開始までの流れ</h2></div><div class="rule"></div>
+    <div class="mode-bar">
+      <span class="label">案件の区分で表示を切り替え</span>
+      <div class="seg" id="modeSeg"><button data-m="ats" class="on">ATS案件（主流）</button><button data-m="cus">個別カスタマイズ案件（OGRなど）</button></div>
+      <span class="br">🔀 区分で違う工程</span>
+    </div>
+    <div class="stepper mode-ats" id="stepper"></div>
+    <div class="band deep">ポイント：<u style="text-underline-offset:4px">顧客の承認（4）を取ってから準備に進む</u>／運用後の見直しは<u style="text-underline-offset:4px">必ず案件シートに戻す</u></div>
+  </section>
+
+  <section id="m01-s2" data-t="受注時に決めること" data-n="02">
+    <div class="sec-head"><span class="sec-no">02</span><h2>受注時に決めること（概要）</h2></div><div class="rule"></div>
+    <div class="grid2">
+      <div class="card" style="border-top:4px solid var(--green-500)"><div class="label" style="color:var(--green-500)">🎯 必ず決めること</div>
+        <ul class="dots" style="margin-top:8px"><li>対応範囲（どこからどこまで）</li><li>区分ルール（応募者をどう分けるか）</li><li>案内の型（5A オンライン登録／5B 面接日程調整）</li><li>引き継ぎの完了の定義</li><li>不通時のルール</li><li>例外時の連絡先</li></ul></div>
+      <div class="card" style="border-top:4px solid var(--yellow-500)"><div class="label" style="color:#9a7a20">⚠️ 特に注意すること</div>
+        <ul class="dots" style="margin-top:8px"><li>年齢・性別・国籍などの選考条件は、顧客の方針と了承を<b class="neg">書面で</b>残す</li><li>不合格・お断りの文面は、<b>顧客が承認したものだけ</b>を使う</li><li>媒体・ツールのログイン情報は、社内共用の案件ページに記載する</li></ul></div>
+    </div>
+  </section>
+
+  <section id="m01-s3" data-t="ヒアリング項目" data-n="03">
+    <div class="sec-head"><span class="sec-no">03</span><h2>ヒアリング項目</h2></div><div class="rule"></div>
+    <p class="lead">キックオフでは上から順に聞きます。聞いた内容は、そのまま案件シートの同じ項目に転記します。</p>
+    <div class="hear" id="hear"></div>
+  </section>
+
+  <section id="m01-s4" data-t="案件シート（ひな形）" data-n="04">
+    <div class="sec-head"><span class="sec-no">04</span><h2>案件シート（ひな形）</h2></div><div class="rule"></div>
+    <div class="grid2" style="margin-bottom:16px">
+      <div class="callout blue"><span class="ic">✅</span><div><b>4-1 基本情報・対応範囲</b><br>どの案件でも<b>必ず記入</b>します。</div></div>
+      <div class="callout yel"><span class="ic">🧩</span><div><b style="color:#9a7a20">4-2以降 顧客ごとの個別カスタマイズ</b><br>ATSの有無や顧客の運用で中身が変わるため、項目ごとに顧客と相談して決めます。</div></div>
+    </div>
+    <div id="sheets"></div>
+    <p class="note" style="margin-top:8px">「OGRの記入例」は、ATSを使わない個別カスタマイズ案件の参考例です。そのまま他の案件に当てはめないでください。未確定の項目には⚠️を付け、4-7にも書きます。</p>
+  </section>
+
+  <section id="m01-s5" data-t="運用開始前チェックリスト" data-n="05">
+    <div class="sec-head"><span class="sec-no">05</span><h2>運用開始前チェックリスト</h2></div><div class="rule"></div>
+    <div class="grid3" id="preCheck"></div>
+  </section>
+
+  <section id="m01-s6" data-t="未決事項" data-n="06">
+    <div class="sec-head"><span class="sec-no">06</span><h2>未決事項（社内で決めること）</h2></div><div class="rule"></div>
+    <div class="tbl-wrap"><table><thead><tr><th>項目</th><th>内容</th><th>状態</th></tr></thead><tbody>
+      <tr><td><b>案件リーダーの決め方</b></td><td>受注ごとに誰が担当するか</td><td><span class="pill yel">⚠️ 要確認</span></td></tr>
+      <tr><td><b>キックオフの形式</b></td><td>対面・オンライン、所要時間、参加者</td><td><span class="pill yel">⚠️ 要確認</span></td></tr>
+      <tr><td><b>テスト運用の条件</b></td><td>何件・何日で本運用に切り替えるか</td><td><span class="pill yel">⚠️ 要確認</span></td></tr>
+      <tr><td><b>案件ページの置き場</b></td><td>Notionのどこに案件シートを置くか</td><td><span class="pill yel">⚠️ 要確認</span></td></tr>
+      <tr><td><b>ATS案件の進め方</b></td><td>4-2以降をATSの設定にどう合わせるか、ATSのアカウント・設定を誰が用意するか</td><td><span class="pill yel">⚠️ 要確認</span></td></tr>
+    </tbody></table></div>
+  </section>
+
+  <section id="m01-s7" data-t="よくある質問" data-n="07">
+    <div class="sec-head"><span class="sec-no">07</span><h2>よくある質問</h2></div><div class="rule"></div>
+    <details><summary><span class="q">Q</span>顧客がATSを使っているか、分かりません。</summary><div class="a">キックオフで最初に確認してください。分からない場合は、応募者の情報や選考の状況を何で管理しているかを聞くと判断しやすくなります。区分が決まるまで、4-2以降は決めないでください。<button class="ref" data-sec="s3">→ 03</button></div></details>
+    <details><summary><span class="q">Q</span>ATS案件でも、案件マニュアルは作りますか。</summary><div class="a">作りません。汎用版と案件シートで運用し、テスト運用で直した点は案件シートに反映します。<button class="ref" data-sec="s1">→ 01</button></div></details>
+    <details><summary><span class="q">Q</span>OGRの記入例を、そのまま別の案件に使ってもよいですか。</summary><div class="a">使わないでください。OGRは個別カスタマイズ案件の参考例です。4-2以降は案件ごとに顧客と相談して決めます。<button class="ref" data-sec="s4">→ 04</button></div></details>
+    <details><summary><span class="q">Q</span>4-2以降が未決のまま、環境準備に進んでもよいですか。</summary><div class="a">進めないでください。顧客の承認（ステップ4）を取ってから準備に進みます。未決の項目は4-7に書き、確認先と期限を決めてください。</div></details>
+    <details><summary><span class="q">Q</span>媒体のパスワードは、どこに書けばよいですか。</summary><div class="a">社内共用の案件ページに記載します。OGRの場合は、OGRマニュアルの「1-2」にまとめています。<button class="ref" data-sec="s2">→ 02</button></div></details>
+  </section>
+</main>
+</div>
+</div>
+
+<!-- =========================================================== 02 -->
+<div class="page" id="p-m02">
+<header class="hero">
+  <div class="crumb">応募者一次対応マニュアル汎用版</div>
+  <div class="no">MANUAL 02</div>
+  <h1>トークスクリプト（共通版）</h1>
+  <p>応募者との電話で、何をどの順番で話すかを確認します。案件ごとに異なる部分は <span class="ph" style="color:#8a6a10">［　］</span> にしています。実際の電話では、［　］を案件シートの値で埋めた<b>「案件別スクリプト」</b>を使います。</p>
+</header>
+<div class="wrap">
+<nav class="toc"></nav>
+<main>
+  <section data-t="こんなときは" data-n="—">
+    <div class="sec-head"><h2>こんなときは、この場面</h2></div><div class="rule"></div>
+    <div class="quick" id="sceneQuick"></div>
+  </section>
+
+  <section id="m02-s0" data-t="どの案件でも守る話し方" data-n="00">
+    <div class="sec-head"><span class="sec-no">00</span><h2>どの案件でも守る話し方</h2></div><div class="rule"></div>
+    <div class="rules">
+      <div class="rule-c"><div class="r"><span class="num">1</span>最初に名乗り、本人確認をしてから用件を話す</div><div class="why">別人に応募内容を伝えないため</div></div>
+      <div class="rule-c"><div class="r"><span class="num">2</span>「今、少しお時間よろしいでしょうか」と必ず聞く</div><div class="why">忙しい時に続けると印象が悪くなり、後でつながりにくくなるため</div></div>
+      <div class="rule-c"><div class="r"><span class="num">3</span>日時・場所・持ち物など大事なことは復唱する</div><div class="why">聞き間違いによる当日のトラブルを防ぐため</div></div>
+      <div class="rule-c"><div class="r"><span class="num">4</span>確認していないことは答えず「確認してご連絡します」</div><div class="why">誤った案内が一番のトラブルのもとになるため</div></div>
+      <div class="rule-c"><div class="r"><span class="num">5</span>登録・送信していないものを「済み」と伝えない</div><div class="why">応募者が待ち続けてしまうため</div></div>
+      <div class="rule-c"><div class="r"><span class="num">6</span>採否・条件について、自分の判断で約束しない</div><div class="why">決めるのは顧客だから</div></div>
+    </div>
+    <div class="callout red" style="margin-top:16px"><span class="ic">🚫</span><div><b>使わない表現</b>　推測や採否に関わる個人的な判断は口にしない
+      <div class="ng"><span>たぶん大丈夫です</span><span>受かると思います</span><span>年齢的に難しいです</span></div></div></div>
+    <h3 class="sub">電話の前のチェックリスト（毎日の架電前に）</h3>
+    <div class="card" data-cl>
+      <div class="cl-head"><span class="label">架電前チェック</span><span class="cnt">0/5</span></div><div class="progress"><i></i></div>
+      <ul class="check">
+        <li><input type="checkbox"><span>案件別スクリプト（［　］を埋めたもの）を手元に開いている</span></li>
+        <li><input type="checkbox"><span>応募者の区分（5A／5B）を案件シートで確認した</span></li>
+        <li><input type="checkbox"><span>名乗る社名と発信番号を確認した</span></li>
+        <li><input type="checkbox"><span>前回までの対応履歴を確認した（何回目の電話か）</span></li>
+        <li><input type="checkbox"><span>5Bの場合、予約ツールで空きを確認できる状態にしている</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="m02-s1" data-t="場面別トーク" data-n="01">
+    <div class="sec-head"><span class="sec-no">01</span><h2>場面別トーク</h2></div><div class="rule"></div>
+    <div class="fillbar">
+      <span class="label">［　］の表示</span>
+      <div class="seg" id="fillSeg"><button data-f="0" class="on">共通版（空欄のまま）</button><button data-f="1" class="org">OGRの例で埋める</button></div>
+      <span class="note">黄色＝案件シートの値に置き換える箇所</span>
+    </div>
+    <div class="scene-wrap">
+      <div class="scene-list" id="sceneList"></div>
+      <div id="sceneView"></div>
+    </div>
+  </section>
+
+  <section id="m02-s2" data-t="置き換える項目" data-n="02">
+    <div class="sec-head"><span class="sec-no">02</span><h2>案件別スクリプトで置き換える項目</h2></div><div class="rule"></div>
+    <div class="tbl-wrap"><table><thead><tr><th>［　］の項目</th><th>案件シートの参照先</th><th>OGRの記入例</th></tr></thead><tbody>
+      <tr><td><span class="ph">名乗る社名</span></td><td>01の4-3</td><td class="ex">オリエンタルガードリサーチ</td></tr>
+      <tr><td><span class="ph">登録先・質問の送り先</span></td><td>01の4-4</td><td class="ex">LINE友だち追加／LINEのトーク</td></tr>
+      <tr><td><span class="ph">面接形式・会場・持ち物・所要時間</span></td><td>01の4-4</td><td class="ex">来社／御徒町中央ビル7階／履歴書・筆記用具／1時間</td></tr>
+      <tr><td><span class="ph">変更の連絡先</span></td><td>01の4-6</td><td class="ex">—</td></tr>
+      <tr><td><span class="ph">聞き取る項目</span></td><td>01の4-3</td><td class="ex">最寄り駅（65〜69歳）</td></tr>
+      <tr><td><span class="ph">お断りの文面</span></td><td>01の4-2</td><td class="ex">媒体の「不合格」</td></tr>
+    </tbody></table></div>
+  </section>
+
+  <section id="m02-s3" data-t="スクリプトの確定手順" data-n="03">
+    <div class="sec-head"><span class="sec-no">03</span><h2>スクリプトの確定手順</h2></div><div class="rule"></div>
+    <div class="confirm-steps">
+      <div>案件リーダーが共通版をもとに<b>案件別スクリプト</b>を作る</div>
+      <div>上司が内容を確認する</div>
+      <div>お断りの文面・名乗り方などを<b>先方の採用責任者</b>に確認してもらう</div>
+      <div>テスト運用で使い、言いづらい部分を直す</div>
+      <div>「確定版」として日付を入れる。変更時は変更日と内容を残す</div>
+    </div>
+    <div class="callout yel" style="margin-top:16px"><span class="ic">⚠️</span><div><b style="color:#9a7a20">未決事項</b><br>・名乗りを「顧客名」にするか「ビジョンアーチ」にするかの社内方針（案件ごとに決めるかどうか）<br>・スクリプトを確定させる承認者</div></div>
+  </section>
+
+  <section id="m02-s4" data-t="よくある質問" data-n="04">
+    <div class="sec-head"><span class="sec-no">04</span><h2>よくある質問</h2></div><div class="rule"></div>
+    <details><summary><span class="q">Q</span>本人ではなく、家族の方が電話に出ました。</summary><div class="a">用件を伝えず「改めてご連絡いたします」と伝えて切ってください。応募したことを本人以外に伝えないためです。<button class="ref" data-scene="1">→ 場面1</button></div></details>
+    <details><summary><span class="q">Q</span>面接日を「確定です」と伝えてよいのは、いつですか。</summary><div class="a">予約ツールへの登録が済んでからです。<button class="ref" data-scene="3">→ 場面3</button></div></details>
+    <details><summary><span class="q">Q</span>「年齢制限はありますか」と聞かれました。</summary><div class="a">自分では答えず「確認のうえ、改めてご連絡いたします」と伝え、案件リーダーに相談します。<button class="ref" data-scene="8">→ 場面8</button><button class="ref" data-scene="10">→ 場面10</button></div></details>
+    <details><summary><span class="q">Q</span>留守番電話に、選考の状況などを詳しく残してもよいですか。</summary><div class="a">残さないでください。本人以外が聞く可能性があるため、求人名以上の内容は残しません。<button class="ref" data-scene="5">→ 場面5</button></div></details>
+    <details><summary><span class="q">Q</span>トークを、自分の言いやすい言葉に変えてもよいですか。</summary><div class="a">個人の判断では変えず、案件リーダーに伝えてください。テスト運用で直し、変更日と内容を残して確定版を更新します。<button class="ref" data-sec="s3">→ 03</button></div></details>
+  </section>
+</main>
+</div>
+</div>
+
+<!-- =========================================================== 03 -->
+<div class="page" id="p-m03">
+<header class="hero">
+  <div class="crumb">応募者一次対応マニュアル汎用版</div>
+  <div class="no">MANUAL 03</div>
+  <h1>応募者一次対応の座組<br>（体制・役割）</h1>
+  <p>誰がどの役割で担当し、困ったときに誰に相談し、顧客に何を報告するかを確認します。担当者名の欄は、上司と決めて記入してください。</p>
+</header>
+<div class="wrap">
+<nav class="toc"></nav>
+<main>
+  <section data-t="こんなときは" data-n="—">
+    <div class="sec-head"><h2>こんなときは、ここを開く</h2></div><div class="rule"></div>
+    <div class="quick">
+      <button data-sec="s2"><span class="q">自分がどこまで判断してよいか確認したい</span><span class="to">→ 02 役割と担当者</span></button>
+      <button data-sec="s3"><span class="q">この業務は誰がやるのか迷った</span><span class="to">→ 03 業務ごとの分担</span></button>
+      <button data-sec="s4"><span class="q">シフトの業務・引き継ぎを確認したい</span><span class="to">→ 04 対応時間とシフト</span></button>
+      <button data-sec="s5"><span class="q">判断に迷った・トラブルが起きた</span><span class="to">→ 05 エスカレーション</span></button>
+      <button data-sec="s6"><span class="q">顧客に何を報告するか確認したい</span><span class="to">→ 06 顧客への報告</span></button>
+      <button data-sec="s7"><span class="q">アカウントや個人情報の扱いを確認したい</span><span class="to">→ 07 アカウント・個人情報</span></button>
+    </div>
+  </section>
+
+  <section id="m03-s1" data-t="座組の全体像" data-n="01">
+    <div class="sec-head"><span class="sec-no">01</span><h2>座組の全体像</h2></div><div class="rule"></div>
+    <div class="card diagram">
+      <svg viewBox="0 0 880 330" role="img" aria-label="顧客・ビジョンアーチ・応募者の関係図" font-family="Noto Sans JP, sans-serif">
+        <defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#4a80b0"/></marker>
+        <marker id="ahg" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#a8acb5"/></marker></defs>
+        <rect x="10" y="20" width="230" height="290" rx="12" fill="#f8f8f8" stroke="#d5d7da"/>
+        <text x="125" y="50" text-anchor="middle" font-size="14" font-weight="700" fill="#5a6172" letter-spacing="3">顧客</text>
+        <rect x="30" y="72" width="190" height="64" rx="8" fill="#fff" stroke="#9bbbd8" stroke-width="1.5"/>
+        <text x="125" y="100" text-anchor="middle" font-size="14" font-weight="700" fill="#35608a">先方の採用責任者</text>
+        <text x="125" y="120" text-anchor="middle" font-size="11" fill="#8a909c">選考条件・方針を決める</text>
+        <rect x="30" y="150" width="190" height="52" rx="8" fill="#fff" stroke="#d5d7da"/>
+        <text x="125" y="181" text-anchor="middle" font-size="13" font-weight="700" fill="#5a6172">先方の面接官</text>
+        <rect x="30" y="216" width="190" height="52" rx="8" fill="#fff" stroke="#d5d7da" stroke-dasharray="4 3"/>
+        <text x="125" y="240" text-anchor="middle" font-size="12.5" font-weight="700" fill="#5a6172">現場・関係部署</text>
+        <text x="125" y="257" text-anchor="middle" font-size="10.5" fill="#a8acb5">必要な案件のみ</text>
+        <rect x="320" y="20" width="250" height="290" rx="12" fill="#dce7f1"/>
+        <text x="445" y="50" text-anchor="middle" font-size="14" font-weight="700" fill="#35608a" letter-spacing="3">ビジョンアーチ</text>
+        <rect x="340" y="72" width="210" height="52" rx="8" fill="#35608a"/>
+        <text x="445" y="96" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">責任者</text>
+        <text x="445" y="113" text-anchor="middle" font-size="10.5" fill="#dce7f1">体制・品質・受注判断</text>
+        <rect x="340" y="140" width="210" height="64" rx="8" fill="#4a80b0"/>
+        <text x="445" y="168" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">案件リーダー</text>
+        <text x="445" y="188" text-anchor="middle" font-size="10.5" fill="#dce7f1">顧客との窓口を一本化</text>
+        <rect x="340" y="220" width="210" height="70" rx="8" fill="#fff" stroke="#4a80b0" stroke-width="1.5"/>
+        <text x="445" y="248" text-anchor="middle" font-size="14" font-weight="700" fill="#35608a">オペレーター</text>
+        <text x="445" y="270" text-anchor="middle" font-size="11" fill="#5a6172">朝 ／ 昼 ／ 夕</text>
+        <line x1="445" y1="124" x2="445" y2="138" stroke="#35608a" stroke-width="2"/>
+        <line x1="445" y1="204" x2="445" y2="218" stroke="#35608a" stroke-width="2"/>
+        <rect x="650" y="20" width="220" height="290" rx="12" fill="#f8f8f8" stroke="#d5d7da"/>
+        <text x="760" y="50" text-anchor="middle" font-size="14" font-weight="700" fill="#5a6172" letter-spacing="3">応募者</text>
+        <circle cx="760" cy="200" r="34" fill="#fff" stroke="#9bbbd8" stroke-width="1.5"/>
+        <circle cx="760" cy="190" r="10" fill="none" stroke="#4a80b0" stroke-width="2.2"/>
+        <path d="M742 216 q18 -18 36 0" fill="none" stroke="#4a80b0" stroke-width="2.2" stroke-linecap="round"/>
+        <text x="760" y="262" text-anchor="middle" font-size="12" fill="#8a909c">求人媒体から応募</text>
+        <line x1="222" y1="168" x2="336" y2="168" stroke="#4a80b0" stroke-width="3" marker-start="url(#ah)" marker-end="url(#ah)"/>
+        <rect x="236" y="134" width="88" height="22" rx="11" fill="#4a80b0"/>
+        <text x="280" y="149" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">窓口はここだけ</text>
+        <line x1="552" y1="248" x2="722" y2="208" stroke="#4a80b0" stroke-width="3" marker-start="url(#ah)" marker-end="url(#ah)"/>
+        <text x="640" y="246" text-anchor="middle" font-size="11" font-weight="700" fill="#35608a">架電・受電</text>
+        <text x="640" y="261" text-anchor="middle" font-size="11" fill="#8a909c">案内・日程調整</text>
+        <path d="M220 190 C 280 250, 300 262, 338 262" fill="none" stroke="#a8acb5" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#ahg)"/>
+        <text x="262" y="286" text-anchor="middle" font-size="10.5" fill="#a8acb5">面接日程の共有</text>
+      </svg>
+      <div class="band">先方の採用責任者とのやり取りは、<u style="text-underline-offset:4px">案件リーダーに集約</u>する</div>
+      <p class="note" style="margin-top:10px">オペレーターが顧客に直接判断を求めると、回答がバラバラになりやすいためです。応募者からの着信も、その時間帯のオペレーターが受けます。</p>
+    </div>
+  </section>
+
+  <section id="m03-s2" data-t="役割と担当者" data-n="02">
+    <div class="sec-head"><span class="sec-no">02</span><h2>役割と担当者</h2></div><div class="rule"></div>
+    <div class="grid3">
+      <div class="card role r1"><div class="rh"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3l2.5 5 5.5.8-4 3.9.9 5.5L12 15.6 7.1 18.2l.9-5.5-4-3.9 5.5-.8z"/></svg></div><div class="rn">責任者<small>体制・品質の責任を持つ</small></div></div>
+        <div class="rb"><div class="wholine">担当者 <span></span></div><ul class="dots"><li>体制づくり</li><li>品質の管理</li><li>新規案件の受注判断</li><li>重大なトラブルの対応</li></ul><div class="judge"><div class="label">自分で判断してよいこと</div>案件の受注・体制変更・ルールの変更</div></div></div>
+      <div class="card role r2"><div class="rh"><div class="ic"><svg viewBox="0 0 24 24"><path d="M4 12h4l3-7 4 14 3-7h2"/></svg></div><div class="rn">案件リーダー<small>案件ごとの社内窓口</small></div></div>
+        <div class="rb"><div class="wholine">担当者 <span></span></div><ul class="dots"><li>先方の採用責任者との窓口</li><li>案件シートの作成・更新</li><li>例外の判断・顧客への報告</li><li>オペレーターのサポート</li></ul><div class="judge"><div class="label">自分で判断してよいこと</div>案件シートの範囲内の例外対応。範囲外は先方の採用責任者に確認</div></div></div>
+      <div class="card role r3"><div class="rh"><div class="ic"><svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2"/></svg></div><div class="rn">オペレーター<small>朝・昼・夕のシフト</small></div></div>
+        <div class="rb"><div class="wholine">担当者 <span></span></div><ul class="dots"><li>応募確認・初回連絡・架電</li><li>案内・日程調整・記録</li><li>受電・折り返しの受付</li><li>シフト間の引き継ぎ</li></ul><div class="judge"><div class="label">自分で判断してよいこと</div>運用フローと案件シートに<b style="color:inherit">書いてあることだけ</b></div></div></div>
+    </div>
+    <div class="grid2" style="margin-top:16px">
+      <div class="card"><div class="label">顧客側の登場人物</div><p style="margin-top:6px;font-size:14px"><b>先方の採用責任者</b>：窓口。選考条件・方針を決める<br><b>先方の面接官</b>：面接を行う<br><b>現場・関係部署</b>：現場の質問に答える（必要な案件のみ）</p></div>
+      <div class="card" style="background:var(--yellow-100);box-shadow:none"><div class="label" style="color:#9a7a20">兼務について</div><p style="margin-top:6px;font-size:14px">小さな案件では、案件リーダーがオペレーターを兼ねても構いません。その場合も「自分で判断してよいこと」の範囲は変わりません。</p></div>
+    </div>
+  </section>
+
+  <section id="m03-s3" data-t="業務ごとの分担" data-n="03">
+    <div class="sec-head"><span class="sec-no">03</span><h2>業務ごとの分担</h2></div><div class="rule"></div>
+    <div class="legend"><span><i class="mk own">◎</i>最終的に責任を持つ</span><span><i class="mk do">○</i>実施する</span><span><i class="mk inf">△</i>報告を受ける</span><span><i class="mk no">—</i>関与しない</span></div>
+    <div class="tbl-wrap"><table><thead><tr><th>業務</th><th class="c">オペレーター</th><th class="c">案件リーダー</th><th class="c">責任者</th><th class="c">顧客</th></tr></thead><tbody id="raci"></tbody></table></div>
+    <details style="margin-top:14px"><summary><span class="q">?</span>なぜこの分担にするのか</summary><div class="a">
+      <p><b>顧客の欄がある理由</b>：選考条件の判断と、顧客企業・求人への苦情対応は顧客が行います。どこから顧客の仕事になるかを分かるようにしています。</p>
+      <p style="margin-top:8px"><b>案件リーダーが◎の業務が多い理由</b>：オペレーターが実施し、案件リーダーが結果に責任を持つことで、人によるばらつきを防ぎます。</p>
+      <p style="margin-top:8px"><b>苦情を2つに分ける理由</b>：顧客企業・求人への苦情と、ビジョンアーチの対応への苦情では、責任を持つ側が違うためです。</p></div></details>
+  </section>
+
+  <section id="m03-s4" data-t="対応時間とシフト" data-n="04">
+    <div class="sec-head"><span class="sec-no">04</span><h2>対応時間とシフト</h2></div><div class="rule"></div>
+    <p class="lead">各時間帯のオペレーターが、その時間帯の業務と<b>受電</b>をあわせて担当します。</p>
+    <div class="chev"><div class="t1">朝<small>__:__ 〜 __:__</small></div><div class="t2">昼<small>__:__ 〜 __:__</small></div><div class="t3">夕<small>__:__ 〜 __:__</small></div></div>
+    <div class="shift-body">
+      <div class="card">新規応募・前日の引き継ぎの確認、<b>初回連絡</b>、架電、返信確認、受電<div class="who">担当者：</div></div>
+      <div class="card"><b>架電（2回目など）</b>、返信確認、受電<div class="who">担当者：</div></div>
+      <div class="card"><b>架電（3回目など）</b>、返信確認、受電、終業処理・翌日への引き継ぎ<div class="who">担当者：<br><span class="neg">※ 営業時間外の着信の折り返しルールを決める</span></div></div>
+    </div>
+    <div class="handoff"><div style="font-size:26px;line-height:1">🔁</div><div><div style="font-weight:700">シフト間の引き継ぎ</div><p style="font-size:13.5px">各時間帯の終わりに次の3つを一覧にして渡します。口頭だけで済ませず、履歴にも残してください。</p><div class="tags"><span class="tag">未対応</span><span class="tag">折り返し待ち</span><span class="tag">保留・相談中</span></div></div></div>
+  </section>
+
+  <section id="m03-s5" data-t="相談・エスカレーション" data-n="05">
+    <div class="sec-head"><span class="sec-no">05</span><h2>相談・エスカレーションの順番</h2></div><div class="rule"></div>
+    <div class="ladder">
+      <div class="lv l1"><div class="lvn"><small>LEVEL</small><span>1</span></div><div class="lvc"><div class="label">こんなとき</div>運用フロー・案件シートに答えがない、判断に迷う</div><div class="lvr"><span class="route">→ 案件リーダー</span><span>社内チャット</span><span class="pill blue" style="width:max-content">その場で</span></div></div>
+      <div class="lv l2"><div class="lvn"><small>LEVEL</small><span>2</span></div><div class="lvc"><div class="label">こんなとき</div>選考条件・採否に関わる／案件シートの範囲外／<b>顧客企業・求人への苦情</b></div><div class="lvr"><span class="route">→ 案件リーダー → 先方の採用責任者</span><span>案件シートの連絡手段</span><span class="pill blue" style="width:max-content">当日中</span></div></div>
+      <div class="lv l3"><div class="lvn"><small>LEVEL</small><span>3</span></div><div class="lvc"><div class="label">こんなとき</div><b class="neg">ビジョンアーチの対応への苦情</b>、個人情報の誤送信など重大なトラブル</div><div class="lvr"><span class="route">→ 案件リーダー＋責任者</span><span>電話＋チャット</span><span class="pill red" style="width:max-content">すぐに</span></div></div>
+    </div>
+    <div class="stop"><div class="big">迷ったら<br>保留・記録・相談</div><p>判断基準がないケースを、オペレーターが独断で決めないでください。応募者には「確認してご連絡します」と伝えれば十分です。</p></div>
+    <h3 class="sub">迷ったときの判断例</h3>
+    <div class="tbl-wrap"><table><thead><tr><th>こんなとき</th><th>自分で判断</th><th>次の行動</th></tr></thead><tbody>
+      <tr><td>案件シートに答えがない質問を応募者からされた</td><td><span class="yn ng">しない</span></td><td>「確認してご連絡します」と伝え、保留・記録して案件リーダーへ（L1）</td></tr>
+      <tr><td>年齢など、選考条件に関わることを聞かれた</td><td><span class="yn ng">しない</span></td><td>案件リーダー → 先方の採用責任者（L2）</td></tr>
+      <tr><td>応募者から辞退の連絡があった</td><td><span class="yn ok">受付OK</span></td><td>内容・日時を記録し、各媒体のメッセージまたは連絡ツールで顧客に連絡</td></tr>
+      <tr><td>求人内容や顧客企業への苦情を受けた</td><td><span class="yn mid">約束しない</span></td><td>内容を記録し、案件リーダー → 先方の採用責任者（L2）</td></tr>
+      <tr><td>こちらの電話対応への苦情を受けた</td><td><span class="yn mid">約束しない</span></td><td>すぐに案件リーダー＋責任者へ（L3）</td></tr>
+      <tr><td>個人情報を誤って送信した</td><td><span class="yn ng">―</span></td><td><b class="neg">すぐに</b>案件リーダー＋責任者へ電話（L3）</td></tr>
+    </tbody></table></div>
+    <h3 class="sub">辞退と苦情の扱い</h3>
+    <div class="grid3">
+      <div class="card" style="border-top:4px solid var(--blue-300)"><div class="label">辞退</div><p style="font-size:13.5px;margin-top:6px">オペレーターが受け付け、内容・日時を記録して、各媒体のメッセージまたは案件シートの連絡ツールで顧客に連絡します。</p></div>
+      <div class="card" style="border-top:4px solid var(--blue-500)"><div class="label">苦情（顧客企業・求人）</div><p style="font-size:13.5px;margin-top:6px">内容を記録して先方の採用責任者に取り次ぎます。<b>対応は顧客</b>が行います。</p></div>
+      <div class="card" style="border-top:4px solid var(--red-500)"><div class="label">苦情（ビジョンアーチの対応）</div><p style="font-size:13.5px;margin-top:6px">電話の仕方、連絡の誤りなどは、<b class="neg">ビジョンアーチが責任を持って</b>対応します。</p></div>
+    </div>
+    <p class="note" style="margin-top:10px">どちらか分からない場合は、案件リーダーが判断します。</p>
+  </section>
+
+  <section id="m03-s6" data-t="顧客への報告" data-n="06">
+    <div class="sec-head"><span class="sec-no">06</span><h2>顧客への報告</h2></div><div class="rule"></div>
+    <p class="lead">報告の頻度・形式は案件シートで決めます。決まっていない場合は、次の数字を<b>週次</b>でまとめ、先方の採用責任者に提案します。</p>
+    <div class="kpis">
+      <div class="kpi"><div class="k">応募数</div><div class="d">期間中に届いた応募通知の数</div></div>
+      <div class="kpi"><div class="k">初回連絡数</div><div class="d">テンプレートを送った数</div></div>
+      <div class="kpi"><div class="k">接続数・接続率</div><div class="d">つながった応募者数 ÷ 架電した応募者数</div></div>
+      <div class="kpi"><div class="k">案内完了数</div><div class="d">5A：登録を案内した数／5B：面接を登録した数</div></div>
+      <div class="kpi"><div class="k">3回不通数</div><div class="d">3回不通でフォローを終えた数</div></div>
+      <div class="kpi"><div class="k">辞退数</div><div class="d">本人から選考前に辞退があった数</div></div>
+      <div class="kpi" style="border-left-color:var(--yellow-500)"><div class="k" style="color:#9a7a20">保留・確認中</div><div class="d">顧客の判断を待っている件数と内容</div></div>
+    </div>
+  </section>
+
+  <section id="m03-s7" data-t="アカウント・個人情報" data-n="07">
+    <div class="sec-head"><span class="sec-no">07</span><h2>アカウント・権限・個人情報</h2></div><div class="rule"></div>
+    <div class="tbl-wrap"><table><thead><tr><th>ツール</th><th>使う人</th><th>権限の付け方</th><th>備考</th></tr></thead><tbody>
+      <tr><td><b>求人媒体の管理画面</b></td><td>オペレーター・案件リーダー</td><td>案件ごとに顧客と相談。共用アカウントの場合は、ログイン情報を案件ページに記載</td><td><span class="pill yel">⚠️ 要確認</span> 業務委託者の扱い</td></tr>
+      <tr><td><b>予約ツール</b></td><td>オペレーター（5Bの案件）</td><td>顧客から権限をもらう</td><td></td></tr>
+      <tr><td><b>応募者対応番号</b></td><td>オペレーター</td><td>社内で設定</td><td></td></tr>
+      <tr><td><b>案件ページ（Notion）</b></td><td>座組の全員</td><td>案件ごとに共有</td><td>ログイン情報は記載する（社内共用）。応募者の個人情報は書かない</td></tr>
+    </tbody></table></div>
+    <div class="band neg">🔒 応募者の個人情報・対応履歴は、案件シートで決めた場所（通常は各媒体の管理画面）にだけ記録。個人の端末や私用チャットに控えない</div>
+  </section>
+
+  <section id="m03-s8" data-t="よくある質問" data-n="08">
+    <div class="sec-head"><span class="sec-no">08</span><h2>よくある質問</h2></div><div class="rule"></div>
+    <details><summary><span class="q">Q</span>オペレーターが、先方の採用責任者に直接連絡してもよいですか。</summary><div class="a">直接は連絡しません。案件リーダーに相談し、案件リーダーから先方に確認します。<button class="ref" data-sec="s1">→ 01</button></div></details>
+    <details><summary><span class="q">Q</span>自分のシフト中に対応が終わりませんでした。</summary><div class="a">「未対応」「折り返し待ち」「保留・相談中」を一覧にして次の担当者に渡し、履歴にも残します。<button class="ref" data-sec="s4">→ 04</button></div></details>
+    <details><summary><span class="q">Q</span>辞退なのか苦情なのか、判断がつきません。</summary><div class="a">自分で決めず、記録して案件リーダーに相談してください。<button class="ref" data-sec="s5">→ 05</button></div></details>
+    <details><summary><span class="q">Q</span>案件リーダーがオペレーターを兼ねる場合、判断できる範囲は広がりますか。</summary><div class="a">広がりません。オペレーターとして対応している間は、運用フローと案件シートに書いてあることだけを判断します。<button class="ref" data-sec="s2">→ 02</button></div></details>
+    <details><summary><span class="q">Q</span>応募者の情報を、手元のメモや私用のチャットに控えてもよいですか。</summary><div class="a">控えないでください。案件シートで決めた場所（通常は各媒体の管理画面）にだけ記録します。<button class="ref" data-sec="s7">→ 07</button></div></details>
+  </section>
+
+  <section id="m03-s9" data-t="未決事項" data-n="09">
+    <div class="sec-head"><span class="sec-no">09</span><h2>未決事項（上司と決めること）</h2></div><div class="rule"></div>
+    <div class="grid2">
+      <div class="card" data-cl><div class="cl-head"><span class="label">座組を確定する前のチェックリスト</span><span class="cnt">0/5</span></div><div class="progress"><i></i></div>
+        <ul class="check"><li><input type="checkbox"><span>02の役割に、担当者名が入っている</span></li><li><input type="checkbox"><span>04の時間帯と担当者が決まっている</span></li><li><input type="checkbox"><span>05で使う社内の連絡手段が決まっている</span></li><li><input type="checkbox"><span>07のアカウントが、担当者ごとに付与されている</span></li><li><input type="checkbox"><span>右の未決事項が解消、または決める期限が決まっている</span></li></ul></div>
+      <div class="tbl-wrap" style="align-self:start"><table><thead><tr><th>項目</th><th>内容</th><th>状態</th></tr></thead><tbody>
+        <tr><td><b>担当者名</b></td><td>責任者・案件リーダー・オペレーターの割り当て</td><td><span class="pill yel">要確認</span></td></tr>
+        <tr><td><b>対応時間</b></td><td>朝・昼・夕の具体的な時間、土日祝の扱い</td><td><span class="pill yel">要確認</span></td></tr>
+        <tr><td><b>時間外の着信</b></td><td>時間外の着信・留守電への折り返しルール</td><td><span class="pill yel">要確認</span></td></tr>
+        <tr><td><b>不在時の代わり</b></td><td>休みのときに誰が代わるか</td><td><span class="pill yel">要確認</span></td></tr>
+        <tr><td><b>業務委託者</b></td><td>役割・権限・個人情報の扱い</td><td><span class="pill yel">要確認</span></td></tr>
+        <tr><td><b>社内の連絡手段</b></td><td>相談に使うチャット・チャンネル</td><td><span class="pill yel">要確認</span></td></tr>
+        <tr><td><b>1人あたりの担当量</b></td><td>同時に担当できる案件数・応募数の目安</td><td><span class="pill yel">要確認</span></td></tr>
+      </tbody></table></div>
+    </div>
+  </section>
+</main>
+</div>
+</div>
+
+<!-- =========================================================== 04 -->
+<div class="page" id="p-m04">
+<header class="hero">
+  <div class="crumb">応募者一次対応マニュアル汎用版</div>
+  <div class="no">MANUAL 04</div>
+  <h1>運用フロー（標準手順）</h1>
+  <p>応募が来てから顧客に引き継ぐまでの毎日の手順を、1工程ずつ確認します。各工程は<b>開始条件・やること・記録すること・完了条件・例外時</b>の5項目でそろえています。</p>
+</header>
+<div class="wrap">
+<nav class="toc"></nav>
+<main>
+  <section id="m04-s1" data-t="基本フローと工程" data-n="01">
+    <div class="sec-head"><span class="sec-no">01</span><h2>基本フローと工程別の手順</h2></div><div class="rule"></div>
+    <p class="lead">工程をクリックすると、その工程の5項目が下に表示されます。電話がつながったあとは、案件シートの区分ルールに従って<b>5A</b>か<b>5B</b>に進みます。</p>
+    <div class="flow">
+      <div class="flow-row" id="flowRow"></div>
+      <div class="frange"><span class="va">ビジョンアーチが担当（一次対応）</span><span class="cl">顧客（面接以降）</span></div>
+      <div class="frec" id="flowRec"></div>
+    </div>
+    <div id="flowDetail"></div>
+  </section>
+
+  <section id="m04-s2" data-t="不通時のフォロー" data-n="02">
+    <div class="sec-head"><span class="sec-no">02</span><h2>電話がつながらないとき（2-4）</h2></div><div class="rule"></div>
+    <div class="tries">
+      <div class="try"><div class="tn">1</div><div class="tt">1回目の電話</div><div class="ts">留守電は名乗りと用件だけ</div></div>
+      <div class="try"><div class="tn">2</div><div class="tt">2回目の電話</div><div class="ts">時間帯を変えてかける</div></div>
+      <div class="try"><div class="tn">3</div><div class="tt">3回目の電話</div><div class="ts">留守電で「メッセージを送る」と伝える</div></div>
+      <div class="try"><div class="tn">✉</div><div class="tt">フォローメール送信</div><div class="ts">送信と記録で完了 → 「選考前辞退」</div></div>
+    </div>
+    <div class="grid2" style="margin-top:14px">
+      <div class="callout blue"><span class="ic">🧩</span><div>回数・時間帯・締め時間・テンプレート名は<b>案件シートの値</b>に従います。<br><span class="note">OGRの例：最大3回／朝・昼・夕／19時以降は翌朝9時以降に繰り越し／「3回目」を送信</span></div></div>
+      <div class="callout yel"><span class="ic">↩️</span><div>3回不通のあとでも、<b style="color:#9a7a20">本人から折り返しがあれば対応を再開</b>します。不通を「本人の辞退」と混同しないでください。</div></div>
+    </div>
+  </section>
+
+  <section id="m04-s3" data-t="共通ステータス" data-n="03">
+    <div class="sec-head"><span class="sec-no">03</span><h2>共通ステータス</h2></div><div class="rule"></div>
+    <p class="lead">媒体ごとにステータス名が違うため、社内では次の5つにそろえて考えます。媒体ごとの表示名は案件シートの対応表（4-5）で確認します。</p>
+    <div class="chev" style="margin-bottom:12px"><div class="tw">未対応</div><div class="t1">初回連絡済み・<br>フォロー中</div><div class="t3">つながった・<br>案内済み</div></div>
+    <div class="status">
+      <div class="stt s1"><div class="sh">未対応</div><div class="sd">応募を確認したが、初回連絡はまだ</div></div>
+      <div class="stt s2"><div class="sh">初回連絡済み・フォロー中</div><div class="sd">初回連絡を送り、電話でフォローしている</div></div>
+      <div class="stt s3"><div class="sh">つながった・案内済み</div><div class="sd">電話がつながり、5A・5B・折り返し日時の指定など次に進んだ</div></div>
+      <div class="stt s4"><div class="sh">選考前辞退</div><div class="sd">本人から辞退があった、または3回不通でフォローを終えた。<b>理由を履歴で区別</b></div></div>
+      <div class="stt s5"><div class="sh">不合格</div><div class="sd">選考条件に沿って、承認済みの文面を送ったとき</div></div>
+    </div>
+    <div class="callout red" style="margin-top:14px"><span class="ic">⚠️</span><div>ステータス名だけで実際の状況を判断しないでください。<b>「登録を案内した」と「登録が完了した」</b>、<b>「希望を聞いた」と「面接が確定した」</b>は、履歴で分けて記録します。</div></div>
+  </section>
+
+  <section id="m04-s4" data-t="例外対応" data-n="04">
+    <div class="sec-head"><span class="sec-no">04</span><h2>例外対応</h2></div><div class="rule"></div>
+    <div class="search"><input id="exQ" type="search" placeholder="キーワードで絞り込み（例：辞退、苦情、ログイン）"><span class="note" id="exCnt"></span></div>
+    <div class="tbl-wrap"><table><thead><tr><th>ケース</th><th>オペレーターの初動</th><th>相談先・注意</th></tr></thead><tbody id="exBody"></tbody></table></div>
+  </section>
+
+  <section id="m04-s5" data-t="日次業務チェックリスト" data-n="05">
+    <div class="sec-head"><span class="sec-no">05</span><h2>日次業務チェックリスト</h2></div><div class="rule"></div>
+    <div class="daily">
+      <div class="card c1" data-cl><div class="dh"><span>🌅 業務開始時</span><span class="cnt num">0/4</span></div><div class="db"><div class="progress"><i></i></div><ul class="check">
+        <li><input type="checkbox"><span>各媒体の新規応募・通知漏れを確認</span></li><li><input type="checkbox"><span>前日からの未対応・保留・折り返し予定を確認</span></li><li><input type="checkbox"><span>応募者対応番号の着信を確認</span></li><li><input type="checkbox"><span>当日の架電・面接予約を把握</span></li></ul></div></div>
+      <div class="card c2" data-cl><div class="dh"><span>☎️ 対応中</span><span class="cnt num">0/5</span></div><div class="db"><div class="progress"><i></i></div><ul class="check">
+        <li><input type="checkbox"><span>朝・昼・夕に各媒体の返信を確認</span></li><li><input type="checkbox"><span>区分に合ったテンプレートを送信</span></li><li><input type="checkbox"><span>案件シートの目安どおりに電話</span></li><li><input type="checkbox"><span>3回不通ならフォローメールを送り、記録</span></li><li><input type="checkbox"><span>5Bは登録してから確定を伝える</span></li></ul></div></div>
+      <div class="card c3" data-cl><div class="dh"><span>🌙 業務終了時</span><span class="cnt num">0/4</span></div><div class="db"><div class="progress"><i></i></div><ul class="check">
+        <li><input type="checkbox"><span>未対応があれば理由・次の予定・担当を記録</span></li><li><input type="checkbox"><span>履歴とステータスを更新</span></li><li><input type="checkbox"><span>媒体の表示と実際の進捗のずれを確認</span></li><li><input type="checkbox"><span>保留・相談・折り返し待ちを引き継ぎ</span></li></ul></div></div>
+    </div>
+  </section>
+
+  <section id="m04-s6" data-t="よくある質問" data-n="06">
+    <div class="sec-head"><span class="sec-no">06</span><h2>よくある質問</h2></div><div class="rule"></div>
+    <details><summary><span class="q">Q</span>5Aと5Bのどちらに進むか、どう判断しますか。</summary><div class="a">案件シートの区分ルールで決まっています。自分では判断せず、案件シートを確認してください。<button class="ref" data-step="2">→ 2-2</button></div></details>
+    <details><summary><span class="q">Q</span>3回つながらなかった方から、あとで折り返しがありました。</summary><div class="a">対応を再開してください。「選考前辞退」にしていても、本人から連絡があれば通常どおり進めます。<button class="ref" data-sec="s2">→ 02</button></div></details>
+    <details><summary><span class="q">Q</span>案件シートに書いていないケースが起きました。</summary><div class="a">保留して記録し、案件リーダーに相談してください。決まった内容は、案件リーダーが案件シートに追記します。</div></details>
+    <details><summary><span class="q">Q</span>面接が決まったあとに、辞退や日程変更の電話が来ました。</summary><div class="a">内容と日時を記録し、顧客に連絡してください。予定の変更・削除は独断で行わないでください。<button class="ref" data-sec="s4">→ 04</button></div></details>
+  </section>
+</main>
+</div>
+</div>
+
+<footer>vision arch ／ 応募者一次対応マニュアル汎用版 — HTMLデザイン案（内容はNotion版 2026/11/16時点）</footer>
+
+<script>
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const PH=s=>s.replace(/［([^］]*)］/g,(m,x)=>`<span class="ph" data-ph="${x}">［${x}］</span>`);
+
+/* ---------- 01: ステップ ---------- */
+const steps=[
+ {n:1,t:'受注・引き合い',w:'営業・責任者',d:'案件名、期間、対応範囲（どこまでやるか）、想定応募数を確認する',o:'案件ページを作成し、案件リーダーを決めた'},
+ {n:2,t:'ヒアリング',w:'案件リーダー',br:1,d:'キックオフで「03 ヒアリング項目」を順に聞く。ATSの有無で案件の区分を決める',o:'議事録を案件ページに残し、案件の区分を決めた',ats:'ATSあり',cus:'ATSなし'},
+ {n:3,t:'案件シート作成',w:'案件リーダー',br:1,d:'「04 案件シート」を複製し、4-1を記入する。4-2以降は顧客と相談する事項を洗い出す',o:'4-1を記入し、4-2以降の相談事項を洗い出した',ats:'4-2以降はATSの設定に沿って決める（⚠️要確認）',cus:'4-2以降はすべて顧客と相談して決める'},
+ {n:4,t:'顧客確認・承認',w:'案件リーダー',gate:1,d:'4-2以降を先方の採用責任者と相談して決め、選考条件・送る文面・引き継ぎの完了の定義の承認を取る',o:'承認の記録（メール・議事録）が残った'},
+ {n:5,t:'環境準備',w:'案件リーダー',br:1,d:'応募者対応番号とテンプレートを用意する。ログイン情報は社内共用の案件ページに記載する',o:'「05 チェックリスト」の環境項目がすべて済んだ',ats:'ATSのアカウント・設定を用意する（⚠️要確認）',cus:'各媒体・予約ツールのアカウントを用意する'},
+ {n:6,t:'スクリプト調整',w:'案件リーダー',d:'「02 トークスクリプト」の［　］を案件の内容で埋める',o:'案件別スクリプトを上司が確認した'},
+ {n:7,t:'テスト運用',w:'オペレーター・案件リーダー',d:'数件で実際に回し、記録・引き継ぎまで通して確認する',o:'直した点を案件シートに反映した'},
+ {n:8,t:'案件マニュアル作成',w:'案件リーダー',br:1,d:'テスト運用で直した点をまとめる',o:'直した点が、区分に応じた資料に反映された',ats:'不要。案件シートの更新で完了',cus:'案件マニュアルを作り、上司が確認する（例：OGRマニュアル）'},
+ {n:9,t:'本運用開始',w:'座組の全員',live:1,d:'「03 座組」と「04 運用フロー」で回す',o:'顧客に開始を連絡した'},
+ {n:10,t:'初回振り返り',w:'案件リーダー',br:1,d:'1〜2週目に顧客と運用を見直す',o:'変更点を反映した',ats:'変更点を案件シートに反映する',cus:'変更点を案件シートと案件マニュアルに反映する'},
+];
+let mode='ats';
+function renderSteps(){
+  const el=$('#stepper'); el.className='stepper mode-'+mode;
+  el.innerHTML=steps.map(s=>`<div class="step ${s.gate?'gate':''} ${s.live?'live':''}"><div class="sn">${s.n}</div><div class="sc"><div>
+   <div class="st">${s.t}${s.br?'<span class="br">🔀 区分で違う</span>':''}${s.gate?'<span class="pill red">ここを通過してから準備へ</span>':''}</div>
+   <div class="who">担当：${s.w}</div><div class="do">${PH(s.d)}</div>
+   ${s.br?`<div class="var"><b style="color:inherit">${mode==='ats'?'ATS案件':'個別カスタマイズ案件'}：</b>${s[mode]}</div>`:''}
+  </div><div class="done"><div class="label">完了条件・成果物</div>${s.o}</div></div></div>`).join('');
+}
+$$('#modeSeg button').forEach(b=>b.onclick=()=>{mode=b.dataset.m;$$('#modeSeg button').forEach(x=>x.classList.toggle('on',x===b));$$('#modeSeg button').forEach(x=>x.classList.toggle('org',x===b&&mode==='cus'));renderSteps();});
+renderSteps();
+
+/* ---------- 01: ヒアリング ---------- */
+const hear=[['A','基本情報','顧客名、案件名、契約期間、想定応募数（月間）、開始希望日'],['B','対応範囲','どの工程からどの工程までを担当するか。面接後の対応（辞退・変更）はどちらが行うか'],['C','媒体','使う求人媒体、ATSの有無、媒体ごとのログイン方法、応募通知の届き方'],['D','区分ルール','応募者をどう分けるか（例：年齢、勤務地、職種）。区分ごとの案内の型'],['E','選考条件','お断りする条件があるか。ある場合は顧客の方針・了承の記録・使う文面'],['F','初回連絡','使うテンプレート名（区分ごと）、送ってから電話するまでの目安'],['G','電話','発信に使う番号、名乗る社名、不通時の回数・時間帯・締め時間'],['H','案内・面接','5A：登録先と完了の定義。5B：面接形式、予約ツール、面接官と優先順、枠の長さ、受付時間、会場・持ち物'],['I','聞き取り項目','電話で確認して記録する項目（例：最寄り駅）と記録先'],['J','ステータス','媒体ごとのステータス名と、共通ステータスとの対応'],['K','引き継ぎ','引き継ぎの方法（ツール登録・連絡不要など）、招待に加える人'],['L','受電','応募者からの折り返し先、応募前の問い合わせへの対応方針'],['M','例外・連絡先','辞退・苦情・現場への質問の連絡先と手段、連絡できる時間'],['N','報告','報告の頻度（日次・週次）、形式、見たい数字'],['O','個人情報・権限','記録してよい場所、担当者の追加方法、業務委託者の扱い']];
+$('#hear').innerHTML=`<div class="first"><span class="hk">!</span><div><div class="ht">最初に、ATS（採用管理システム）を使っているかを確認</div><div class="hd">ATSの有無で案件の区分（<b>ATS案件</b>／<b>個別カスタマイズ案件</b>）が決まり、このあとの進め方が変わります。</div></div></div>`+
+ hear.map(h=>`<div><span class="hk">${h[0]}</span><div><div class="ht">${h[1]}</div><div class="hd">${h[2]}</div></div></div>`).join('');
+
+/* ---------- 01: 案件シート ---------- */
+const sheets=[
+ {id:'4-1',t:'基本情報・対応範囲',tag:'✅ 共通（必ず記入）',open:1,rows:[['顧客名・案件名','株式会社オリエンタル・ガード・リサーチ様／応募者一次対応'],['契約期間・開始日','—'],['案件リーダー（社内）','—'],['対応範囲','応募確認〜引き継ぎ。面接確定後の辞退・変更は顧客が対応'],['媒体','エアワーク／マイナビ／エンゲージ／バイトル'],['媒体へのログイン方法','OGRマニュアルの「1-2」に管理画面URL・ID・パスワードを記載'],['ATSの有無','なし（各媒体の管理画面で対応する個別カスタマイズ案件）']]},
+ {id:'4-2',t:'区分ルール・選考条件',tag:'🧩 要相談',custom:`<div class="tbl-wrap" style="box-shadow:none;border:1px solid var(--line)"><table><thead><tr><th>区分</th><th>初回テンプレート</th><th>案内の型</th><th>完了の定義</th><th>OGRの記入例</th></tr></thead><tbody>
+   <tr><td><b>区分①</b></td><td class="fill"></td><td class="fill"></td><td class="fill"></td><td class="ex">64歳以下／「LINE誘導」／5A（LINE友だち追加）／案内＋ステータス変更</td></tr>
+   <tr><td><b>区分②</b></td><td class="fill"></td><td class="fill"></td><td class="fill"></td><td class="ex">65〜69歳／「65歳以上」／5B（来社面接）／登録＋復唱</td></tr>
+   <tr><td><b>区分③</b></td><td class="fill"></td><td class="fill"></td><td class="fill"></td><td class="ex">70歳以上／「不合格」／—／送信＋記録</td></tr>
+   <tr><td><b>分からないとき</b></td><td colspan="3" class="fill"></td><td class="ex">推測せず確認。分からなければ保留</td></tr></tbody></table></div>`,
+   rows:[['お断りする条件','70歳以上は不採用'],['顧客の了承の記録','OGR了承済み（記録の場所を書く）'],['使う文面','媒体の「不合格」'],['個別に確認中の条件','女性応募者・外国籍の応募者（⚠️要確認）']]},
+ {id:'4-3',t:'連絡・電話・不通時',tag:'🧩 要相談',rows:[['名乗る社名','オリエンタルガードリサーチ（採用担当）'],['発信・受電の番号','050-3528-7279'],['初回連絡から電話までの目安','区分①は同日中'],['不通時の回数・時間帯','最大3回。朝・昼・夕。繰り越しあり'],['締め時間','19時以降は翌朝9時以降に繰り越し'],['3回不通後のテンプレート・ステータス','「3回目」を送信／選考前辞退'],['電話で聞き取る項目と記録先','65〜69歳は最寄り駅を各管理画面に記載']]},
+ {id:'4-4',t:'案内・面接・引き継ぎ',tag:'🧩 要相談',rows:[['5A：登録先と案内の方法','メール内URLからLINE友だち追加。入力完了の確認は不要'],['5B：面接形式','来社面接（約30分、1時間枠）'],['予約ツール','ナレッジスイート'],['先方の面接官と優先順','野澤様 → 皆葉様 → 奥貫様'],['受付可能な時間','平日、最終開始16:00'],['会場・持ち物','御徒町中央ビル7階／履歴書（写真付）・筆記用具'],['引き継ぎの方法','ツールへの登録で完了。招待に奥貫様を追加']]},
+ {id:'4-5',t:'ステータス対応表',tag:'🧩 要相談',custom:`<div class="tbl-wrap" style="box-shadow:none;border:1px solid var(--line)"><table><thead><tr><th>共通ステータス</th><th>媒体A</th><th>媒体B</th><th>媒体C</th><th>媒体D</th></tr></thead><tbody>${['未対応','初回連絡済み・フォロー中','つながった・案内済み','選考前辞退','不合格'].map(s=>`<tr><td><b>${s}</b></td><td class="fill"></td><td class="fill"></td><td class="fill"></td><td class="fill"></td></tr>`).join('')}</tbody></table></div><p class="note" style="margin-top:8px">記入例は、OGRマニュアルの「5-2. 媒体別ステータス対応表」を参照。</p>`},
+ {id:'4-6',t:'連絡先・報告・権限',tag:'🧩 要相談',rows:[['先方の採用責任者（窓口）','—'],['辞退・苦情の連絡先と手段','野澤様または須藤様へ電話またはLINE'],['面接日程の変更の連絡先','—'],['現場への質問の取り次ぎ先','警備指導部（平日10:00〜17:00）'],['報告の頻度・形式','通常のLINE案内では別途連絡不要'],['記録してよい場所','各媒体の管理画面'],['業務委託者の権限','⚠️確認中']]},
+ {id:'4-7',t:'未決事項',tag:'🧩 要相談',custom:`<div class="tbl-wrap" style="box-shadow:none;border:1px solid var(--line)"><table><thead><tr><th>項目</th><th>確認先</th><th>期限</th></tr></thead><tbody><tr><td class="fill"></td><td class="fill"></td><td class="fill"></td></tr></tbody></table></div>`},
+];
+$('#sheets').innerHTML=sheets.map(s=>`<details ${s.open?'open':''}><summary><span class="q">${s.id}</span><span class="sheet-head"><span>${s.t}</span><span class="pill ${s.tag.startsWith('✅')?'blue':'yel'}">${s.tag}</span></span></summary><div class="a wide">
+ ${s.custom||''}
+ ${s.rows?`<div class="tbl-wrap" style="box-shadow:none;border:1px solid var(--line);${s.custom?'margin-top:12px':''}"><table><thead><tr><th>項目</th><th>記入欄</th><th>OGRの記入例</th></tr></thead><tbody>${s.rows.map(r=>`<tr><td><b>${r[0]}</b></td><td class="fill"></td><td class="ex">${r[1]}</td></tr>`).join('')}</tbody></table></div>`:''}
+</div></details>`).join('');
+
+/* ---------- 01: 開始前チェック ---------- */
+const pre=[['合意','🤝',['案件シートの4-1が埋まり、区分（ATS／個別）が決まっている','4-2以降の相談事項について顧客と合意し、承認の記録が残っている','選考条件・お断りの文面について、顧客の了承が記録されている','引き継ぎの完了の定義を顧客と合意した']],
+ ['環境','🔧',['ATS案件：ATSにログインでき、必要な設定が済んでいる','個別カスタマイズ案件：各媒体にログインでき、テンプレートが登録されている','ログイン情報が、社内共用の案件ページに記載されている','応募者対応番号で発信・受電できる','予約ツールで予定作成・設備予約ができる（5Bの案件）','担当者全員に必要な権限がある']],
+ ['体制・文書','📄',['「03 座組」の役割・シフトに担当者名が入っている','案件別のトークスクリプトを上司が確認した','テスト運用で、記録・引き継ぎまで通して確認した','個別カスタマイズ案件：案件マニュアルを上司が確認した','顧客に運用開始日を連絡した']]];
+$('#preCheck').innerHTML=pre.map(g=>`<div class="card" data-cl><div class="cl-head"><span class="label">${g[1]} ${g[0]}</span><span class="cnt">0/${g[2].length}</span></div><div class="progress"><i></i></div><ul class="check">${g[2].map(x=>`<li><input type="checkbox"><span>${x}</span></li>`).join('')}</ul></div>`).join('');
+
+/* ---------- 02: 場面 ---------- */
+const scenes=[
+ {n:1,g:'発信',t:'発信：本人確認・名乗り・お礼',q:'応募者に初めて電話する',use:'応募者に初めて電話するとき',goal:'本人であることを確認し、話してよいか了承をもらう',next:'区分に沿って「2. 案内A」か「3. 案内B」へ',
+  talk:[['',['もしもし、［名乗る社名］の［担当者名］と申します。','こちら、［応募者名］様のお電話番号でお間違いないでしょうか？','［求人名］にご応募いただき、ありがとうございます。今、少しお時間よろしいでしょうか？']]],
+  memo:'・本人でない方が出た場合は、用件を伝えず「改めてご連絡いたします」と切ります。<br>・「今は話せない」と言われたら → 場面9',
+  why:['<b>用件の前に本人確認</b>：家族など別の方に、応募したことを伝えないため。','<b>「今、少しお時間よろしいでしょうか」</b>：忙しいときに続けると印象が悪くなり、その後つながりにくくなるため。','<b>最初にお礼</b>：営業の電話ではないと分かり、話を聞いてもらいやすくなります。']},
+ {n:2,g:'案内',t:'案内A：オンライン登録の案内（5A）',q:'LINEやWEBフォームへの登録を案内する',use:'区分が5Aの応募者と電話がつながったとき',goal:'登録先と、その後の流れを伝える',next:'案内した日時を記録する（04の2-5A）',
+  talk:[['',['先ほど、［媒体名］でご登録のメールアドレス宛てにご案内をお送りしました。','メールにあるURLから、［登録先：LINEの友だち追加／WEBフォームへの入力など］をお願いいたします。','この後、案内に沿って情報をご入力いただき、面接の日程調整をお願いいたします。ご質問も［質問の送り先］からお送りいただけます。','それでは、この後のご入力をお願いいたします。ありがとうございました。']],
+   ['メールが見つからないと言われたとき',['失礼いたしました。念のため、迷惑メールフォルダもご確認いただけますでしょうか？ 見当たらない場合は、送信先を確認して改めてご案内いたします。']]],
+  extra:'<div class="memo org"><b style="color:inherit">LINEなどを使っていない・登録が難しいとき</b>：案件シートに切り替え先があれば「3. 案内B」へ。なければ案件リーダーに相談。</div>',
+  memo:'入力の完了を電話中に待つかどうかは、案件シートの「完了の定義」に従います。確認していないものを「完了」と記録しないでください。'},
+ {n:3,g:'案内',t:'案内B：面接日程の調整（5B）',q:'面接の日程を電話で決める',use:'区分が5Bの応募者と電話がつながったとき',goal:'日時を決め、予約ツールに登録してから復唱する',next:'聞き取る項目があれば場面4へ。確定日時を記録（04の2-5B）',
+  talk:[['候補日を伝える',['面接は［面接形式：対面／オンライン］で行います。直近ですと、［候補日時①］または［候補日時②］でご案内できますが、ご都合はいかがでしょうか？']],
+   ['予約ツールへの登録が済んでから伝える',['それでは、［○月○日（○）○時］に、［会場／接続方法］でお待ちしております。［持ち物］をご用意ください。','当日は［所要時間］ほどお時間を確保していただけますと幸いです。日程の変更がある場合は、［変更の連絡先］までご連絡ください。']],
+   ['候補が合わないとき',['ご都合のよい曜日や時間帯を、可能でしたら2〜3つ教えていただけますでしょうか。確認のうえ、改めてご連絡いたします。']]],
+  warn:'空きの確認と登録が済む前に「確定です」と伝えない',
+  memo:'先方の面接官の優先順・枠の長さ・受付可能な時間は案件シートで確認します。',
+  why:['<b>登録が済んでから日時を伝える</b>：枠が埋まっていたときに誤った案内になるため。','<b>日時・会場・持ち物を復唱</b>：聞き間違いによる当日のトラブルを防ぐため。','<b>希望を2〜3つ聞く</b>：1つだけだと、確認後にまた合わずやり取りが増えるため。']},
+ {n:4,g:'案内',t:'追加で聞き取る項目',q:'案件シートに聞き取り項目がある',use:'案件シートに「電話で聞き取る項目」があるとき',goal:'決められた項目だけを聞いて、記録する',next:'案件シートで決めた記録先に残す',
+  talk:[['',['最後に、［応募者名］様の［聞き取る項目：最寄り駅など］をお伺いしてもよろしいでしょうか？']]],
+  memo:'案件シートの「電話で聞き取る項目」にあるものだけを、最後に聞きます。<b>案件シートにない項目は聞きません。</b>'},
+ {n:5,g:'つながらない',t:'留守番電話',q:'留守番電話になった',use:'電話がつながらず、留守番電話になったとき',goal:'名乗りと用件だけを残す',next:'何回目かを記録。3回目のあとはフォローメール（04の2-4）',
+  talk:[['1回目・2回目',['もしもし、［名乗る社名］採用担当の［担当者名］と申します。［応募者名］様のお電話番号でよろしかったでしょうか。［求人名］のご応募の件でご連絡いたしました。またお電話いたします。失礼いたします。']],
+   ['3回目',['もしもし、［名乗る社名］採用担当の［担当者名］と申します。［応募者名］様のお電話番号でよろしかったでしょうか。［求人名］のご応募の件でご連絡しておりました。何度かお電話してお出にならないようですので、この後メッセージをお送りさせていただきます。失礼いたします。']]],
+  warn:'🔒 留守番電話は本人以外が聞く可能性があります。求人名以上の内容（選考状況、年齢など）は残さない'},
+ {n:6,g:'受電',t:'受電：折り返し・問い合わせ',q:'応募者から電話がかかってきた',use:'応募者対応番号に電話がかかってきたとき',goal:'応募済みか、応募前かを確認する',next:'応募済み→履歴から続きへ／応募前→媒体からの応募をお願い',
+  talk:[['',['お電話ありがとうございます。［名乗る社名］の［担当者名］でございます。','ご応募についてのお電話でしょうか？ 差し支えなければ、お名前と、どちらの求人媒体をご覧になったかお伺いしてもよろしいでしょうか？ すでに求人媒体からご応募いただいておりますでしょうか？']],
+   ['応募前だった場合',['ご案内のため、お手数ですが、［媒体名］からご応募をお願いできますでしょうか。ご応募を確認できましたら、改めてご連絡いたします。']]],
+  memo:'<b>応募済み：</b>媒体・氏名・求人を照合し、履歴から続きの対応へ。本人確認の質問は繰り返しません。<br><b>応募前：</b>案件シートの「応募前の問い合わせへの対応方針」に沿って案内します。'},
+ {n:7,g:'受電',t:'辞退の申し出',q:'「辞退したい」と言われた',use:'応募者から辞退を伝えられたとき',goal:'辞退の意思を確認し、お礼を伝える',next:'内容・日時を記録し、顧客に連絡する',
+  talk:[['',['承知いたしました。ご連絡いただき、ありがとうございます。念のため、［求人名］へのご応募を辞退されるということでよろしいでしょうか？','かしこまりました。担当にも申し伝えます。このたびはご応募いただき、ありがとうございました。']]],
+  memo:'理由は無理に聞きません。各媒体のメッセージまたは案件シートの連絡ツールで顧客に連絡します。面接確定後の辞退・変更も同じく顧客に連絡し、<b>予定の削除・変更を独断で行わない</b>でください。'},
+ {n:8,g:'注意が必要',t:'条件に合わない場合の案内',q:'採否を聞かれた・条件に合わなかった',use:'選考条件に当たる応募者だったとき、電話で採否を聞かれたとき',goal:'自分の言葉で採否や理由を伝えない',next:'承認済みの文面で案内。なければ保留して案件リーダーへ',
+  warn:'お断りの案内は、<b style="color:inherit">案件シートで顧客が承認した文面・テンプレートだけ</b>を使う。電話で自分の言葉で理由を説明したり、その場で採否を伝えたりしない',
+  talk:[['電話で採否を聞かれた場合',['選考の結果につきましては、担当から改めてご連絡いたします。お待たせして申し訳ございません。']]],
+  why:['<b>採否をその場で伝えない</b>：決めるのは顧客。顧客の方針と食い違う恐れがあるため。','<b>承認済みの文面だけを使う</b>：自分の言葉で説明すると、意図せず応募者を傷つけたり苦情につながるため。']},
+ {n:9,g:'発信',t:'今は話せないと言われたとき',q:'「今は話せない」と言われた',use:'発信したときに「今は話せない」と言われたとき',goal:'次に電話してよい日時を教えてもらう',next:'指定日時を記録し、折り返し予定として引き継ぐ',
+  talk:[['',['承知しました。改めてお電話いたしますので、ご都合のよい日時を教えていただけますでしょうか？','それでは、［○月○日（○）○時ごろ］に改めてご連絡いたします。失礼いたします。']]]},
+ {n:10,g:'注意が必要',t:'答えられない質問・苦情',q:'答えられない質問・苦情を受けた',use:'求人条件・現場・採否など確認していないことを聞かれた／苦情を受けた',goal:'その場で判断・約束をせず、次の連絡を約束する',next:'内容を記録し、案件リーダーに報告する',
+  talk:[['答えられない質問',['確認のうえ、改めてご連絡いたします。ご連絡は［いつまでに／どの方法で］差し上げてもよろしいでしょうか。']],['苦情・異議',['ご不快な思いをおかけして申し訳ございません。内容を担当に正確にお伝えし、改めてご連絡いたします。']]],
+  warn:'苦情は、その場で判断・約束をしない。内容を正確に記録し、すぐに案件リーダーに報告<br>・顧客企業や求人に関する苦情 → 先方の採用責任者に取り次ぎ、<b style="color:inherit">対応は顧客</b><br>・ビジョンアーチの対応に関する苦情 → <b style="color:inherit">ビジョンアーチ（責任者）が対応</b>'},
+];
+const OGR={'名乗る社名':'オリエンタルガードリサーチ','登録先：LINEの友だち追加／WEBフォームへの入力など':'LINEの友だち追加','質問の送り先':'LINEのトーク','面接形式：対面／オンライン':'来社','会場／接続方法':'御徒町中央ビル7階','持ち物':'履歴書（写真付）・筆記用具','所要時間':'1時間','聞き取る項目：最寄り駅など':'最寄り駅'};
+let cur=1, fill=false;
+function renderScene(){
+  const s=scenes.find(x=>x.n===cur);
+  $$('#sceneList button').forEach(b=>b.classList.toggle('on',+b.dataset.n===cur));
+  let html=`<div class="scene"><div class="sh"><span class="n num">${String(s.n).padStart(2,'0')}</span><h3>${s.t}</h3></div>
+   <div class="meta"><div><div class="label">使う場面</div>${s.use}</div><div class="goal"><div class="label" style="color:var(--blue-500)">ゴール</div>${s.goal}</div><div><div class="label">次の行動</div>${s.next}</div></div><div class="body">`;
+  if(s.warn) html+=`<div class="memo red">⚠️ ${s.warn}</div>`;
+  s.talk.forEach(([h,lines])=>{html+=(h?`<div class="talk-ttl">${h}</div>`:`<div class="talk-ttl">トーク</div>`)+`<div class="bubble">${lines.map(l=>`<p>${PH(l)}</p>`).join('')}</div>`;});
+  if(s.extra) html+=s.extra;
+  if(s.memo) html+=`<div class="memo">📝 <b style="color:inherit">担当者メモ</b><br>${s.memo}</div>`;
+  if(s.why) html+=`<details class="why-box"><summary><span class="q">?</span>なぜこの言葉を使うのか</summary><div class="a"><ul class="dots">${s.why.map(w=>`<li>${w}</li>`).join('')}</ul></div></details>`;
+  html+=`<div style="display:flex;justify-content:space-between;gap:8px">${s.n>1?`<button class="ref" data-scene="${s.n-1}">← 前の場面</button>`:'<span></span>'}${s.n<10?`<button class="ref" data-scene="${s.n+1}">次の場面 →</button>`:''}</div></div></div>`;
+  $('#sceneView').innerHTML=html; applyFill();
+}
+function applyFill(){$$('#sceneView .ph').forEach(p=>{const k=p.dataset.ph;if(fill&&OGR[k]){p.textContent=OGR[k];p.classList.add('filled');}else{p.textContent='［'+k+'］';p.classList.remove('filled');}});}
+let lastG='';$('#sceneList').innerHTML=scenes.map(s=>{return `<button data-n="${s.n}"><span class="num">${s.n}</span>${s.t.split('：')[0]}</button>`}).join('');
+$$('#sceneList button').forEach(b=>b.onclick=()=>{cur=+b.dataset.n;renderScene();});
+$('#sceneQuick').innerHTML=scenes.filter(s=>s.n!==4).map(s=>`<button data-scene="${s.n}"><span class="q">${s.q}</span><span class="to">→ 場面${s.n}</span></button>`).join('');
+$$('#fillSeg button').forEach(b=>b.onclick=()=>{fill=b.dataset.f==='1';$$('#fillSeg button').forEach(x=>x.classList.toggle('on',x===b));applyFill();});
+renderScene();
+
+/* ---------- 03: RACI ---------- */
+const M={'◎':'own','○':'do','△':'inf','—':'no'};
+const raci=[['grp','日常業務'],['応募確認・初回連絡・架電','○','◎','—','—'],['受電・折り返しの受付','○','◎','—','—'],['案内・面接日程の登録','○','◎','—','△'],['対応履歴・ステータスの記録','○','◎','—','—'],['grp','例外・辞退・苦情'],['例外の判断（案件シートの範囲内）','—','◎','△','—'],['例外の判断（範囲外・選考条件）','—','○','△','◎'],['辞退の受付・顧客への連絡','○','◎','—','○'],['苦情（顧客企業・求人に関するもの）','○','○','△','◎'],['苦情（ビジョンアーチの対応に関するもの）','○','○','◎','△'],['grp','管理・更新'],['顧客への定期報告','—','○','◎','△'],['案件シート・スクリプトの更新','—','○','◎','△'],['担当者の追加・権限付与','—','○','◎','△']];
+$('#raci').innerHTML=raci.map(r=>r[0]==='grp'?`<tr class="grp"><td colspan="5">${r[1]}</td></tr>`:`<tr><td>${r[0]}</td>${r.slice(1).map(v=>`<td class="c"><i class="mk ${M[v]}">${v}</i></td>`).join('')}</tr>`).join('');
+
+/* ---------- 04: フロー ---------- */
+const fsteps=[
+ {id:'2-1',t:'応募通知の確認',a:'各媒体から応募通知を受けたとき',b:'通知と管理画面を確認し、応募ID・応募日時・媒体・求人を特定します。重複応募や求人の取り違えがないかも確認します',c:'未着手の応募者を「未対応」として管理します',d:'応募情報を確認し、2-2に進める状態になった',e:'応募者が見つからない・ログインできない場合は、対象と時刻を記録して相談してください'},
+ {id:'2-2',t:'履歴の照合・区分の確認',a:'2-1が完了したとき',b:'過去の対応・面接確定の有無を確認し、［案件シート：区分ルール］に沿って区分を決めます。分からないときは推測せず確認します',c:'区分、連絡先・既存履歴の有無。保留した場合はその理由',d:'区分が決まった、または保留理由を記録して相談した',e:'顧客側ですでに面接が確定している応募者には、追加で連絡しないでください'},
+ {id:'2-3',t:'初回連絡の送信',a:'2-2で区分が決まったとき',b:'［案件シート：区分ごとのテンプレート］を選び、送信先と本文を確認して送ります。電話が必要な区分は、［案件シート：電話までの目安］のうちに電話します',c:'媒体・送信先・テンプレート・送信日時。共通ステータスを変更します',d:'テンプレートを送り、電話を予定した（電話が不要な区分は送信と記録で完了）',e:'送信先が分からない・送信エラーの場合は相談。送っていないメールを「送りました」と伝えないでください'},
+ {id:'2-4',t:'電話・不通時のフォロー',a:'初回連絡を送ったあと',b:'［案件シート：発信番号］から発信し、本人と求人を確認します（話す内容は02 トークスクリプト）。つながれば2-5Aまたは2-5Bへ。つながらなければ最大3回かけます（→ 02章の図）',c:'毎回の日時・何回目か・結果・次の対応',d:'つながって次の工程へ進んだ、または3回不通のあとにフォローメールの送信と記録が済んだ',e:'3回不通のあとでも、本人から折り返しがあれば対応を再開。不通を「本人の辞退」と混同しないでください'},
+ {id:'2-5A',t:'オンライン登録の案内',a:'区分が5Aの応募者と電話がつながったとき',b:'［案件シート：登録先］への登録と、その後の流れを案内します（トークスクリプトの場面2）',c:'案内の日時。登録されたか分かれば記録し、分からなければ「未確認」',d:'［案件シート：完了の定義］を満たした',e:'登録が難しい場合は［案件シート：切り替え先］に従う（なければ相談）。切り替えた理由を記録'},
+ {id:'2-5B',t:'面接日程の調整',a:'区分が5Bの応募者と電話がつながったとき',b:'［案件シート：予約ツール］で［案件シート：先方の面接官の優先順］に空きを確認し、候補を伝えて登録します。登録後に日時・会場・持ち物を復唱。［案件シート：聞き取る項目］があれば確認します',c:'希望日時／確定日時／調整中、登録の状況と日時、聞き取った項目',d:'日時を確定し、予約ツールに登録して復唱した',e:'空きがない・登録できない場合は、希望日時と次の連絡予定を記録して相談。登録前に「確定です」と伝えない'},
+ {id:'2-6',t:'顧客への引き継ぎ',a:'2-5Aまたは2-5Bが完了したとき',b:'［案件シート：引き継ぎの方法］で引き継ぎます（例：予約ツールへの登録、招待への追加、ステータス変更）',c:'引き継ぎの日時・手段・内容',d:'［案件シート：引き継ぎの完了の定義］を満たした',e:'登録や変更ができない場合は、記録して相談してください'},
+ {id:'2-7',t:'対応履歴・ステータスの記録',a:'各工程で対応したとき',b:'［案件シート：記録してよい場所］に履歴を残し、［案件シート：ステータス対応表］に沿ってステータスを変更します',c:'日時・担当者・連絡手段・何回目か・結果・案内内容・次の対応と期限',d:'履歴が実際の進捗と一致している',e:'媒体の表示と実際の進捗が違う場合は、履歴に事実を残します'},
+];
+let fcur=0;
+const fbtn=i=>{const s=fsteps[i];return `<button class="fnode ${s.id.includes('5A')?'a':''}" data-i="${i}"><span class="num">${s.id}</span>${s.t}</button>`};
+$('#flowRow').innerHTML=fbtn(0)+'<span class="farrow">›</span>'+fbtn(1)+'<span class="farrow">›</span>'+fbtn(2)+'<span class="farrow">›</span>'+fbtn(3)+'<span class="farrow">›</span><div class="fsplit">'+fbtn(4)+fbtn(5)+'</div><span class="farrow">›</span>'+fbtn(6)+'<span class="farrow">›</span><div class="fnode" style="background:var(--bg-note);color:var(--ink);cursor:default;flex:.8"><span class="num">顧客</span>面接・選考</div>';
+$('#flowRec').innerHTML=`<button class="fnode" data-i="7"><span class="num">2-7</span>対応履歴・ステータスの記録（すべての工程で）</button>`;
+function renderFlow(){
+  $$('.fnode[data-i]').forEach(b=>b.classList.toggle('on',+b.dataset.i===fcur));
+  const s=fsteps[fcur];
+  $('#flowDetail').innerHTML=`<div class="detail"><div class="dh"><span class="num">${s.id}</span><h3>${s.t}</h3><div class="navs">${fcur>0?`<button data-fi="${fcur-1}">← 前</button>`:''}${fcur<fsteps.length-1?`<button data-fi="${fcur+1}">次 →</button>`:''}</div></div>
+  <div class="five"><div class="f1"><div class="label"><i>1</i>開始条件</div>${s.a}</div><div class="f2"><div class="label"><i>2</i>やること</div>${PH(s.b)}</div><div class="f3"><div class="label"><i>3</i>記録すること</div>${s.c}</div><div class="f4"><div class="label"><i>4</i>完了条件</div>${PH(s.d)}</div><div class="f5"><div class="label"><i>5</i>例外時</div>${PH(s.e)}</div></div></div>`;
+}
+document.addEventListener('click',e=>{const b=e.target.closest('.fnode[data-i],[data-fi]');if(!b)return;fcur=+(b.dataset.i??b.dataset.fi);renderFlow();});
+renderFlow();
+
+/* ---------- 04: 例外 ---------- */
+const ex=[['区分が分からない','推測せず確認。分からなければ保留','案件リーダー'],['折り返し希望','希望日時を記録して対応','次のシフトに引き継ぐ'],['本人から辞退','内容・日時を記録し、選考前なら「選考前辞退」','各媒体のメッセージまたは案件シートの連絡ツールで顧客に連絡'],['面接確定後の辞退・変更','内容・日時を記録し、顧客へ連絡','<b class="neg">予定の変更・削除を独断で行わない</b>'],['苦情（顧客企業・求人に関するもの）','内容を正確に記録し、その場で判断・約束しない','案件リーダーから先方の採用責任者に取り次ぐ。対応は顧客'],['苦情（ビジョンアーチの対応に関するもの）','内容を正確に記録し、その場で判断・約束しない','<b class="neg">すぐに</b>案件リーダーへ。対応はビジョンアーチ（責任者）'],['求人条件・採否の質問','確認していない内容は答えず、確認して連絡すると伝える','内容と次の連絡予定を記録'],['案件シートにない選考条件に関わるもの','判断せず保留','案件リーダー → 先方の採用責任者'],['重複応募・連絡先の不備','既存履歴とエラー内容を確認・記録し、相談','二重連絡を避ける'],['システムに入れない','対象・時刻を記録し、未対応として引き継ぐ','未承認の場所に個人情報を控えない']];
+function renderEx(){const q=$('#exQ').value.trim();const r=ex.filter(x=>!q||x.join(' ').includes(q));
+ $('#exBody').innerHTML=r.map(x=>`<tr><td><b style="color:var(--ink)">${x[0]}</b></td><td>${x[1]}</td><td>${x[2]}</td></tr>`).join('')||`<tr><td colspan="3" class="ex">該当なし — 保留・記録して案件リーダーに相談</td></tr>`;
+ $('#exCnt').textContent=`${r.length} / ${ex.length} 件`;}
+$('#exQ').addEventListener('input',renderEx);renderEx();
+
+/* ---------- チェックリスト共通 ---------- */
+$$('[data-cl]').forEach(c=>{const bx=$$('input',c);const upd=()=>{const n=bx.filter(b=>b.checked).length;bx.forEach(b=>b.parentElement.classList.toggle('done',b.checked));$('.progress i',c).style.width=(n/bx.length*100)+'%';$('.cnt',c).textContent=`${n}/${bx.length}`;};bx.forEach(b=>b.addEventListener('change',upd));});
+
+/* ---------- 目次・ルーティング ---------- */
+$$('.page').forEach(p=>{const nav=$('nav.toc',p);if(!nav)return;
+  nav.innerHTML='<div class="ttl">CONTENTS</div>'+$$('section[data-t]',p).map((s,i)=>{if(!s.id)s.id=p.id+'-q';return `<button data-target="${s.id}"><span class="num">${s.dataset.n}</span>${s.dataset.t}</button>`}).join('');});
+function page(){return location.hash.replace('#','')||'home'}
+function scrollToId(id){const el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth',block:'start'});}
+document.addEventListener('click',e=>{
+  const t=e.target.closest('[data-target]');if(t){scrollToId(t.dataset.target);return;}
+  const sc=e.target.closest('[data-scene]');if(sc){cur=+sc.dataset.scene;renderScene();scrollToId('m02-s1');return;}
+  const st=e.target.closest('[data-step]');if(st){fcur=+st.dataset.step-1;renderFlow();scrollToId('m04-s1');return;}
+  const g=e.target.closest('[data-sec]');if(g){const pg=g.dataset.go||page();const go=()=>scrollToId(pg+'-'+g.dataset.sec);if(g.dataset.go&&g.dataset.go!==page()){location.hash=g.dataset.go;setTimeout(go,80);}else go();}
+});
+function route(){const r=page();$$('.page').forEach(p=>p.classList.toggle('on',p.id==='p-'+r));$$('.tab').forEach(t=>t.classList.toggle('on',t.dataset.r===r));window.scrollTo(0,0);}
+window.addEventListener('hashchange',route);route();
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const p=e.target.closest('.page');$$('nav.toc button',p).forEach(b=>b.classList.toggle('on',b.dataset.target===e.target.id));}}),{rootMargin:'-20% 0px -70% 0px'});
+$$('section[data-t]').forEach(s=>obs.observe(s));
+</script>
+</body>
+</html>
